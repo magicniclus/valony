@@ -15,7 +15,7 @@ const Formulaire = () => {
     const dispatch = useDispatch();
 
     return (
-        <form className='mt-5' 
+        <form className='mt-10' 
               onFocus={() => dispatch(focusAction())} 
               onBlur={(e) => {
                   // Empêche le déclenchement de onBlur lors du passage entre les éléments du formulaire
