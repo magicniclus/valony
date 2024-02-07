@@ -4,13 +4,31 @@ import React, {useEffect, useState} from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { stopFocus, focus as focusAction } from '@/redux/formFocusSlice';
+
 import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
-import { get } from 'http';
+import { startLoading, stopLoading } from '@/redux/loadingSlice';
 
 const StepOne = () => {
     const getFocus = useSelector((state: RootState) => state.focus.formFocus);
+    const isLoading = useSelector((state: RootState) => state.loading.isLoading);
+
     const dispatch = useDispatch();
+
+    const listIndicatif = [
+        "FRANCE",
+        "ROYAUME-UNI",
+        "ETATS-UNIS",
+        "ALLEMAGNE",
+        "BELGIQUE",
+        "CANADA",
+        "ESPAGNE",
+        "ITALIE",
+        "LUXEMBOURG",
+        "PAYS-BAS",
+        "POLOGNE",
+        "SUISSE",
+        "AUTRE",
+    ];
 
     const [step, setStep] = useState<number>(1);
     const [title, setTitle] = useState<string>('Pour plus d’informations, c’est ici ');
@@ -21,9 +39,18 @@ const StepOne = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [checkbox, setCheckbox] = useState<boolean>(false);
+    const [indicatif, setIndicatif] = useState<string>('');
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [isButtonDisabledTwo, setIsButtonDisabledTwo] = useState(true);
 
     const [valueDisplay, setValueDisplay] = useState<string>('');
+    const [valueDisplayTwo, setValueDisplayTwo] = useState<string>('');
+
+    useEffect(() => {
+  // Logique ou actions à effectuer suite à la mise à jour de valueDisplayTwo
+        console.log(valueDisplayTwo); // Par exemple, pour déboguer
+    }, [valueDisplayTwo]);
 
     useEffect(()=>{
         if(getFocus){
@@ -36,14 +63,16 @@ const StepOne = () => {
                     break;
                 case 3:
                     setValueDisplay(phone);
+                    setValueDisplayTwo(indicatif);
                     break;
                 default:
                     break;
-            }
-        }else{
+                }
+            }else{
+            setValueDisplayTwo('');
             setValueDisplay('');
         }
-    }, [getFocus, name, email, phone, step]);
+    }, [getFocus, name, email, phone, step, indicatif]);
 
 
     useEffect(() => {
@@ -66,7 +95,7 @@ const StepOne = () => {
                 isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
                 break;
             case 3:
-                isValid = /^\+[1-9]{1}[0-9]{3,14}$/.test(phone);
+                isValid = true;
                 break;
             default:
                 isValid = false;
@@ -108,11 +137,31 @@ const StepOne = () => {
             case 4:
                 setFinalTitle(true)
             default:
-                setTitle('Pour plus d’informations, c’est ici ');
+                setTitle('');
                 setPlaceholder('Nom');
                 break;
         }
     };
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setIndicatif(e.target.value);
+    };
+
+    const handleSubite = (e: React.MouseEvent<HTMLButtonElement>)  => {
+        console.log(name, email, phone, indicatif, checkbox);
+         setTimeout(() => {
+        dispatch(startLoading()) 
+      }, 2000)
+    }
+
+    useEffect(()=>{
+        if(checkbox){
+            setIsButtonDisabledTwo(false);
+            
+        }else{
+            setIsButtonDisabledTwo(true);
+        }
+    }, [name, email, phone, indicatif, checkbox])
 
     return (
         <>  
@@ -133,19 +182,56 @@ const StepOne = () => {
                     background-color: transparent !important;
                      outline: none; /* Supprime la bordure de focus native */
                 }
+                .backgroundTelOne{
+                    background-color: transparent !important;
+                     outline: none; /* Supprime la bordure de focus native */
+                     position: relative;
+                }
+                .backgroundTelOne:after{
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #1c1c1c;
+                    height: 1px;
+                    width: 100%;
+                    z-index: 100;
+                }
+                .backgroundTelOneContainer {
+                     border-bottom: 1px solid #1c1c1c;
+                }
+                .backgroudTelOneBorder {
+                     border-bottom: 1px solid #1c1c1c;
+                }
                 @media (max-width: 768px) {
                     .backgroundThree:after{
                        width: 100%;
                     }
                 }
+                select {
+                    /* for Firefox */
+                    -moz-appearance: none;
+                    /* for Chrome */
+                    -webkit-appearance: none;
+                    }
+
+                    /* For IE10 */
+                    select::-ms-expand {
+                    display: none;
+                }
+                .finalPContainer{
+                }
+                .finalp{
+                     border-bottom: 1px solid #1c1c1c; 
+                }
             `}</style>
-            <div>
+            <div className='font-outfit'>
                 <div>
-                    <div className='backgroundThree bg-transparent relative  md:mr-48'>
-                        <p className={`text-[18px] font-outfit uppercase items-center absolute top-0 left-0 transition duration-300 ease-in-out xl:flex hidden ${getFocus ? "lg:-translate-x-[calc(100%+15px)] " : "md:flex"}`}>{title}</p>
+                    <div className={`${step < 3 && "backgroundThree"} bg-transparent relative  md:mr-48 md:min-w-[470px]`}>
+                        <p className={`text-[18px] font-outfit uppercase items-center absolute top-0 left-0 transition duration-300 ease-in-out xl:flex hidden ${getFocus ? "lg:-translate-x-[calc(100%+15px)] " : "md:flex"} ${step < 4 ? " " : "hidden" }`}>{title}</p>
                         <div className='flex'>
                             {
-                                step <= 3 ?
+                                step < 3 ?
                                 <>
                                     <input 
                                         type={step === 2 ? 'email' : 'text'}
@@ -173,28 +259,53 @@ const StepOne = () => {
                                     /> 
                                 </>
                                 : 
-                                <>
+                                step === 3 ?
+                                <div className={`flex md:w-[450px] justify-between ${!getFocus && "backgroundTelOneContainer"}`}>
+                                    <select 
+                                        value={valueDisplayTwo} 
+                                        onChange={handleSelectChange} 
+                                        className={`backgroundTelOne ${getFocus && "backgroudTelOneBorder"} bg-transparent w-[25%] relative pb-3 text-[14px]`}
+                                    >
+                                        <option value="" disabled>{getFocus ? 'Indicatif pays' : ""}</option>
+                                        {/* Mise à jour pour afficher correctement les options d'indicatif */}
+                                        {
+                                            listIndicatif.map((indicatif, index) => (
+                                                <option key={index} value={indicatif}>{indicatif}</option> // Utilisez indicatif ou une structure appropriée pour `value`
+                                            ))
+                                        }
+                                    </select>
                                     <input 
-                                            type={step === 2 ? 'email' : 'text'}
+                                            type={'text'}
                                             value={valueDisplay}
                                             onChange={handleInputChange} 
-                                            className="backgroundFour bg-transparent w-[95%] md:w-[450px] relative pb-3 placeholder:text-text text-[14px] md:block hidden"
+                                            className={`backgroundTelOne bg-transparent w-[67%] relative pb-3 placeholder:text-text text-[14px]  ${getFocus && "backgroudTelOneBorder"}`}
                                             placeholder={
-                                                    'Numéro de téléphone'
+                                                getFocus ? '06 XX XX XX XX' : ""
                                             }
                                     /> 
-                                    <input 
-                                        type={step === 2 ? 'email' : 'text'}
-                                        value={valueDisplay}
-                                        onChange={handleInputChange} 
-                                        className="backgroundFour bg-transparent w-[95%] md:w-[450px] relative pb-3 placeholder:text-text text-[14px] md:block hidden"
-                                        placeholder={
-                                                'Numéro de téléphone'
-                                        }
-                                    /> 
-                                </>
+                                </div> : 
+                                <div className='w-full flex flex-col'>
+                                    <div className=' text-[14px] text-text flex md:flex-row flex-col justify-between'>
+                                        <div className='finalPContainer w-full md:w-[30%] overflow-hidden'>
+                                            <p className='finalp'>{phone}</p>
+                                        </div>
+                                        <div className='finalPContainer w-full md:w-[30%] overflow-hidden md:mt-0 mt-3'>
+                                            <p className='finalp uppercase'>{name}</p>
+                                        </div >
+                                        <div className='finalPContainer w-full md:w-[30%] overflow-hidden md:mt-0 mt-3'>
+                                            <p className='finalp'>{email}</p>
+                                        </div>
+                                    </div>
+                                    <div className='mt-5'>
+                                        <input type="checkbox" className="mt-3" onChange={(e)=>setCheckbox(e.target.checked)} />
+                                        <label className='ml-3'>J’ai lu et accepte la politique de confidentialité de ce site.*</label>
+                                    </div>
+                                    <div className='w-full flex justify-end'>
+                                        <button type="button" className="bg-or text-white text-[20px] font-outfit py-3 w-full max-w-[129px] mt-5 rounded-full" disabled={isButtonDisabledTwo} onClick={handleSubite}>Envoyer</button>
+                                    </div>
+                                </div>
                             }
-                            <button type="button" onClick={handleStep} disabled={isButtonDisabled}>
+                            <button type="button" onClick={handleStep} disabled={isButtonDisabled} className={`${step < 4 ? " " : "hidden" }`}>
                                 <ArrowRightCircleIcon className="h-[17px] w-auto" />
                             </button>
                         </div>
