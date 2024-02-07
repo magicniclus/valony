@@ -22,7 +22,7 @@ const Hero = () => {
                     bottom: 0;
                     background: url('/background/hero.png') top center no-repeat;
                     background-size: cover;
-                    height: 559px;
+                    min-height: 559px;
                     width: 100%;
                     z-index: -1; // Assurez-vous que ce z-index permet à l'image d'être en arrière-plan
                 }
@@ -41,7 +41,7 @@ const Hero = () => {
                     </div>
                     <ForwardLine pourcentage={0} />
                 </div>
-                <div className='w-full h-[559px] overflow-hidden flex flex-col items-end z-10 relative  md:py-0 px-4'>
+                <div className='w-full min-h-[559px] overflow-hidden flex flex-col items-end z-10 relative py-4  md:py-0 px-4'>
                     {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
                     <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                     <Nav language="fr" />
