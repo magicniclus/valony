@@ -1,0 +1,58 @@
+import React from 'react';
+
+import ForwardLine from './ForwardLine';
+import Nav from './Nav';
+import Formulaire from './Formulaire';
+
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+
+const Hero = () => {
+
+     const { formFocus } = useSelector((state: RootState) => state.focus);
+     const backgroundClass = formFocus ? 'background blur' : 'background';
+
+    return (
+        <>
+            <style jsx>{`
+                .backgroundImage {
+                    position: absolute;
+                    top: 0; // Positionne l'image de fond pour couvrir uniquement la moitié droite
+                    right: 0;
+                    bottom: 0;
+                    background: url('/background/hero.png') top center no-repeat;
+                    background-size: cover;
+                    height: 559px;
+                    width: 100%;
+                    z-index: -1; // Assurez-vous que ce z-index permet à l'image d'être en arrière-plan
+                }
+
+                .blurEffect {
+                    filter: blur(8px);
+                }
+            `}</style>
+            <section className='min-h-[559px] w-full flex'>
+                <div className='w-[121px] min-h-[559px] bg-white px-4 py-6 flex flex-col items-center justify-between'>
+                    <div className='w-full'>
+                        <img src="/logos/logo.png" alt="Logo" className='w-[91px] h-auto' style={{ marginBottom: "20px" }} />
+                        <div className='flex justify-center min-w-max -translate-x-11'>
+                            <p className='text-or text-[16px] rotate-[270deg] translate-y-20 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; une vue incroyable</p>
+                        </div>
+                    </div>
+                    <ForwardLine pourcentage={0} />
+                </div>
+                <div className='w-full h-[559px] overflow-hidden flex flex-col items-end z-10 relative'>
+                    {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
+                    <div className={`backgroundImage ${formFocus ? 'blurEffect' : ''}`}></div>
+                    <Nav language="fr" />
+                    <div className='flex flex-col md:mr-38 mt-10'>
+                        <h1 className='text-[45px] font-bold text-textClear'>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
+                        <Formulaire />
+                    </div>
+                </div>
+            </section>
+        </>
+    );
+};
+
+export default Hero;
