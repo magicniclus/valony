@@ -8,8 +8,9 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      text: "#120F0C",
-      red: "#8D0F1B",
+      text: "#1c1c1c",
+      textClear: "#256068",
+      or: "#938664",
       background: "#A78E88",
       white: "#FFFFFF",
       gray: "#E8E3E2",
@@ -22,6 +23,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+    },
+    fontFamily: {
+      outfit : ['Outfit', 'sans-serif'],
     },
   },
   plugins: [],
