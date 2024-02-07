@@ -31,8 +31,8 @@ const Hero = () => {
                     filter: blur(8px);
                 }
             `}</style>
-            <section className='min-h-[559px] w-full flex'>
-                <div className='w-[121px] min-h-[559px] bg-white px-4 py-6 flex flex-col items-center justify-between'>
+            <section className='min-h-[559px] w-full flex '>
+                <div className='w-[121px] min-h-[559px] bg-white px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
                     <div className='w-full'>
                         <img src="/logos/logo.png" alt="Logo" className='w-[91px] h-auto' style={{ marginBottom: "20px" }} />
                         <div className='flex justify-center min-w-max -translate-x-11'>
@@ -41,12 +41,12 @@ const Hero = () => {
                     </div>
                     <ForwardLine pourcentage={0} />
                 </div>
-                <div className='w-full h-[559px] overflow-hidden flex flex-col items-end z-10 relative'>
+                <div className='w-full h-[559px] overflow-hidden flex flex-col items-end z-10 relative  md:py-0 px-4'>
                     {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
-                    <div className={`backgroundImage ${formFocus ? 'blurEffect' : ''}`}></div>
+                    <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                     <Nav language="fr" />
-                    <div className='flex flex-col md:mr-38 mt-10'>
-                        <h1 className='text-[45px] font-bold text-textClear'>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
+                    <div className='flex flex-col md:mr-38 md:mt-10 md:mx-0 mx-auto md:my-0 my-auto'>
+                        <h1 className='sm:text-[45px] text-4xl font-bold text-textClear'>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
                         <Formulaire />
                     </div>
                 </div>
