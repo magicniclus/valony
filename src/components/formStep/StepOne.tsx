@@ -285,7 +285,7 @@ const StepOne = () => {
                                             }
                                     /> 
                                 </div> : 
-                                <div className='w-full flex flex-col'>
+                                <div className='w-full flex flex-col mb-5'>
                                     <div className=' text-[14px] text-text flex md:flex-row flex-col justify-between'>
                                         <div className='finalPContainer w-full md:w-[30%] overflow-hidden'>
                                             <p className='finalp'>{phone}</p>
