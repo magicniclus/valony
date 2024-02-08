@@ -85,7 +85,7 @@ const Hero = () => {
                         </div>
                     </div>
                 </div>
-                <div className='bg-white py-3 px-6 rounded-r-full md:rounded-l-none rounded-l-full md:mx-0 mx-auto w-full flex md:hidden'>
+                <div className='bg-white py-5 px-6 rounded-r-full md:rounded-l-none rounded-l-full md:mx-0 mx-auto w-full flex md:hidden'>
                         <div className='flex justify-between h-full flex-col sm:items-start items-center mx-auto'>
                             <p className='text-[10px] font-outfit text-or text-center uppercase'>Découvrez</p>
                             <h2 className='text-or text-[20px] font-outfit text-center uppercase'>Les Villas SEAVEN</h2>
