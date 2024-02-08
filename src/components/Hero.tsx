@@ -1,16 +1,36 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 
 import ForwardLine from './ForwardLine';
 import Nav from './Nav';
 import Formulaire from './Formulaire';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
+import { stopFocus } from '@/redux/formFocusSlice';
 
 const Hero = () => {
 
+    const dispatch = useDispatch();
+    const ref = useRef<HTMLDivElement>(null);
+
      const { formFocus } = useSelector((state: RootState) => state.focus);
      const backgroundClass = formFocus ? 'background blur' : 'background';
+
+     useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (ref.current && !ref.current.contains(event.target as Node)) {
+                dispatch(stopFocus());
+            }
+        }
+
+        // Attacher l'écouteur d'événements
+        document.addEventListener("mousedown", handleClickOutside);
+
+        // Retourne une fonction de nettoyage qui sera exécutée lors du démontage du composant
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [dispatch]);
 
     return (
         <>
@@ -41,11 +61,11 @@ const Hero = () => {
                     </div>
                     <ForwardLine pourcentage={0} />
                 </div>
-                <div className='w-full min-h-[559px] overflow-hidden flex flex-col items-end z-10 relative py-4  md:py-0 px-4'>
+                <div className='w-full min-h-[559px] overflow-hidden flex flex-col items-end z-10 relative py-4e  md:py-0 px-4'>
                     {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
                     <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                     <Nav language="fr" />
-                    <div className='flex flex-col md:mr-38 md:mt-10 md:mx-0 mx-auto md:my-0 my-auto'>
+                    <div className='flex flex-col md:mr-38 md:mt-10 md:mx-0 mx-auto md:my-0 my-auto' ref={ref}>
                         <h1 className='sm:text-[45px] text-4xl font-bold text-textClear'>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
                         <Formulaire />
                     </div>
