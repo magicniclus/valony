@@ -13,7 +13,7 @@ const config: Config = {
       or: "#938664",
       background: "#A78E88",
       white: "#FFFFFF",
-      gray: "#E8E3E2",
+      gray: "#312F39",
       beige: "#E6DFDE",
       beigeDark: "#A78E88"
     },
