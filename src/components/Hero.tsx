@@ -80,7 +80,7 @@ const Hero = () => {
                             <div className='flex justify-between h-full flex-col sm:items-start items-center'>
                                 <p className='text-[10px] font-outfit text-or text-center uppercase'>Découvrez</p>
                                 <h2 className='text-or text-[20px] font-outfit text-center uppercase'>Les Villas SEAVEN</h2>
-                                <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
+                                <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] translate-x-[160px] md:block hidden' /></h3>
                             </div>
                         </div>
                     </div>
