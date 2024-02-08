@@ -6,6 +6,7 @@ import { RootState } from "@/redux/store";
 import Loader from "@/components/Loader";
 import { stopLoading } from "@/redux/loadingSlice";
 import Hero from "@/components/Hero";
+import LightBox from "@/components/LightBox";
 
 export default function Home() {
 
@@ -28,6 +29,7 @@ export default function Home() {
     <>
       <main>
         <Hero />
+        <LightBox />
       </main>
       <footer></footer>
     </>
