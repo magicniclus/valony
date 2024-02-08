@@ -18,7 +18,7 @@ const BackgroundPresentation = () => {
                 <ForwardLine pourcentage={42} color="white" />
             </div>
             <div className='w-full flex md:flex-row flex-col'>
-                <div className='md:w-[50%] w-full overflow-hidden flex justify-between bg-beige flex-col px-14 py-8'>
+                <div className='md:w-[50%] w-full overflow-hidden flex justify-between bg-beige flex-col px-4 md:px-14 py-8'>
                     <h2 className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[50px]'>
                         Votre nouveau port d’attache à 
                         à La Cotinière
