@@ -16,7 +16,7 @@ const config: Config = {
       blueClear: "#256068",
       blueClearClear: "#98AFB5",
       gray: "#312F39",
-      beige: "#E6DFDE",
+      beige: "#F1DAC1",
       beigeDark: "#A78E88"
     },
     extend: {
