@@ -10,6 +10,7 @@ import LightBox from "@/components/LightBox";
 import BluePresentation from "@/components/BluePresentation";
 import BackgroundPresentation from "@/components/BackgroundPresentation";
 import Bienvenue from "@/components/Bienvenue";
+import Footer from "@/components/Footer";
 
 export default function Home() {
 
@@ -38,7 +39,7 @@ export default function Home() {
         <BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={64} title="Grands volumes baignés de lumière et prestations à la carte" susTitle="« Un environnement de vie exceptionnel qui respire l’élégance et le confort. »" list={["Jusqu’à 156 m2 habitables pour des villas de 5 à 6 pièces", "Grandes terrasses avec vue imprenable sur l’océan", "Vaste salon / séjour baigné de lumière naturelle", "2 à 3 stationnements et 1 local à vélos sécurisés par maison", "Magnifiques suites parentales dotées d’un grand dressing", "etc..."]} button="Découvrir toutes les prestations" src="interieur.jpg" />
         <Bienvenue />
       </main>
-      <footer></footer>
+      <Footer />
     </>
   );
 }
