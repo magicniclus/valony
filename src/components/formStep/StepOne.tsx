@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
-import { startLoading, stopLoading } from '@/redux/loadingSlice';
+import { startLoading} from '@/redux/loadingSlice';
+import { stopFocus, focus as focusAction } from '@/redux/formFocusSlice';
 
 const StepOne = () => {
     const getFocus = useSelector((state: RootState) => state.focus.formFocus);
