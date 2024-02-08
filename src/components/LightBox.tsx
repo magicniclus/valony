@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import ForwardLine from './ForwardLine';
-import {  ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import {  ArrowLeftIcon, ArrowRightIcon, SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/outline';
 
 interface MediaItem {
     id: number;
@@ -40,24 +40,48 @@ const LightBox = () => {
     ]
 
     const [imgSelected, setImgSelected] = useState<string>(listMedia[0].src);
-     const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
+    const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
+    const [isMuted, setIsMuted] = useState<boolean>(true);
+    const [renderId, setRenderId] = useState(0); // Déplacez l'état renderId ici
+
+    const handleMedia = (idx: number) => {
+         setSelectedMediaIndex((prevIndex) => (idx) % listMedia.length);
+            setRenderId((prevId) => prevId + 1); 
+    }
 
     const imageContainer = (image : string)=>{
-        return (
-            <img src={image} alt="LightBox" className='h-[100%] w-[100%] my-auto object-cover' />    
-        )
-    }
+            return (
+                <>
+                    <style jsx>{`
+                        @keyframes fadeIn {
+                        from {
+                            opacity: 0;
+                        }
+                        to {
+                            opacity: 1;
+                        }
+                    }
+                    .fade-in {
+                        animation: fadeIn 0.5s ease-out;
+                    }
+                    `}</style>
+                    <img src={listMedia[selectedMediaIndex].src} alt="LightBox" key={`${listMedia[selectedMediaIndex].src}-${renderId}`} className='h-[100%] w-[100%] my-auto object-cover fade-in' />  
+                </>
+            )
+        }
 
     const videoContainer = ()=>{
         return (
-            <video className='h-[100%] w-[100%] my-auto object-cover' autoPlay loop muted>
-                <source src="/images/video.mp4" type="video/mp4" />
-            </video>
+            <div className='h-[100%] w-[100%] relative'>
+                <video className='h-[100%] w-[100%] my-auto object-cover relative' autoPlay loop muted={isMuted}>
+                    <source src="/images/video.mp4" type="video/mp4" />
+                    
+                </video>
+                    <button type="button" onClick={() => setIsMuted(!isMuted)} className='absolute top-5 right-5 bg-white/30 p-3 rounded-full hover:bg-white transition duration-300 ease-in-out'>
+                        {isMuted ? <SpeakerXMarkIcon className='text-gray w-6 h-6' /> : <SpeakerWaveIcon className='text-gray w-6 h-6' />}
+                    </button>
+            </div>
         )
-    }
-
-    const handleMedia = (idx: number) => {
-        setSelectedMediaIndex((prevIndex) => (idx) % listMedia.length);
     }
 
     const handleNext = () => {
@@ -92,13 +116,13 @@ const LightBox = () => {
                         <ForwardLine pourcentage={16} color='white' />
                     </div>
                     <div className='w-full min-h-[559px] overflow-hidden flex justify-between items-center z-10 bg-gray'>
-                        <div className='h-[612px] sm:w-[90%] w-full relative'>
+                        <div className='md:h-[612px] h-full sm:w-[90%] w-full relative'>
                                 {listMedia[selectedMediaIndex].src === '/images/vignette.png' ? videoContainer() : imageContainer(listMedia[selectedMediaIndex].src)}
-                             <div className='sm:hidden block group absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-white p-3 hover:border hover:border-white hover:bg-white/50' onClick={handleNext}>
-                                <ArrowRightIcon className='text-gray group-hover:text-white w-6 h-6 transition duration-300 ease-in-out' />
+                             <div className='cursor-pointer sm:hidden block group absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-white/50 p-3 hover:border hover:border-white hover:bg-white transition duration-300 ease-in-out' onClick={handleNext}>
+                                <ArrowRightIcon className='text-gray w-6 h-6 transition duration-300 ease-in-out' />
                             </div>
-                            <div className='sm:hidden block group absolute left-2 top-1/2 transform -translate-y-1/2 rounded-full bg-white p-3 hover:border hover:border-white hover:bg-white/50' onClick={handlePrev}>
-                                <ArrowLeftIcon className='text-gray w-6 h-6 group-hover:text-white transition duration-300 ease-in-out' />
+                            <div className='cursor-pointer sm:hidden block group absolute left-2 top-1/2 transform -translate-y-1/2 rounded-full bg-white/50 p-3 hover:border hover:border-white hover:bg-white transition duration-300 ease-in-out' onClick={handlePrev}>
+                                <ArrowLeftIcon className='text-gray w-6 h-6 transition duration-300 ease-in-out' />
                             </div>
                         </div>
                         <div className='sm:flex hidden w-[8%] h-[612px] flex-col justify-between items-center relative'>
