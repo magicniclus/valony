@@ -6,8 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
-import { startLoading} from '@/redux/loadingSlice';
+import { startLoading, stopLoading} from '@/redux/loadingSlice';
 import { stopFocus, focus as focusAction } from '@/redux/formFocusSlice';
+import { addProspect } from '@/firebase/dataManager';
 
 const StepOne = () => {
     const getFocus = useSelector((state: RootState) => state.focus.formFocus);
@@ -150,9 +151,23 @@ const StepOne = () => {
 
     const handleSubite = (e: React.MouseEvent<HTMLButtonElement>)  => {
         console.log(name, email, phone, indicatif, checkbox);
-         setTimeout(() => {
         dispatch(startLoading()) 
-      }, 2000)
+        addProspect({nom: name, email: email, telephone: phone, indicatif: indicatif}).then((success)=>{
+            console.log(success);
+            dispatch(stopFocus());
+            setStep(1);
+            setName('');
+            setEmail('');
+            setPhone('');
+            setIndicatif('');
+            setCheckbox(false);
+            setIsButtonDisabled(true);
+            setIsButtonDisabledTwo(true);
+            dispatch(stopLoading())
+        }).catch((error)=>{
+            console.log(error);
+            dispatch(stopLoading())
+        })
     }
 
     useEffect(()=>{
