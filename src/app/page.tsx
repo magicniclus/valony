@@ -12,18 +12,53 @@ import BackgroundPresentation from "@/components/BackgroundPresentation";
 import Bienvenue from "@/components/Bienvenue";
 import Footer from "@/components/Footer";
 
+const preloadImage = (src: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => resolve();
+    img.onerror = (error) => reject(error);
+  });
+};
+
 export default function Home() {
 
   const dispatch = useDispatch();
   const isLoading = useSelector((state: RootState) => state.loading.isLoading);
 
   useEffect(() => {
-    if(isLoading){
-      setTimeout(() => {
+    // URLs des images à charger
+    const imageSources = [
+      '/background/hero.png',
+      '/icons/facebook.png',
+      '/icons/instagram.png',
+      '/icons/x.png',
+      '/icons/linkdin.png',
+      '/icons/pomme.png',
+      '/icons/wifi.png',
+      '/icons/bullet.png',
+      '/images/agilite.jpg',
+      '/images/creativite.jpg',
+      '/images/exigence.jpg',
+      '/images/exterieur.jpg',
+      '/images/interieur.jpg',
+      '/images/jardin.jpg',
+      '/images/logo-white.png',
+      '/images/oleron.jpg',
+      '/images/terrasse.jpg',
+      '/images/vignette.png',
+      '/images/vue-ocean.png',
+    ];
+
+    // Précharger toutes les images et mettre à jour l'état une fois chargées
+    Promise.all(imageSources.map(src => preloadImage(src)))
+      .then(() => {
         dispatch(stopLoading()) 
-      }, 2000)
-    }
-  },[])
+      })
+      .catch((error) => {
+        console.error("Erreur lors du chargement des images", error);
+      });
+  }, []);
 
   if (isLoading) {
     return <Loader />;
