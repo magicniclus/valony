@@ -30,7 +30,7 @@ const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourc
             <div className='w-full flex md:flex-row flex-col'>
                 <div className='md:w-[50%] w-full min-h-[559px] overflow-hidden md:flex hidden justify-between items-center bg-gray bg-cover bg-center' style={{"backgroundImage": `url(/images/${src})`}}></div>
                 <div className='md:w-[50%] w-full min-h-[559px] overflow-hidden flex justify-between items-start bg-blueClearClear flex-col px-14 py-8'>
-                    <h2 className='text-[45px] font-bold text-blueClear leading-[50px]'>
+                    <h2 className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[50px]'>
                         {title}
                     </h2>
                     <h3 className='font-outfit text-[17px] font-bold mt-3'>
