@@ -12,9 +12,6 @@ const Nav = () => {
 
     const language = useSelector((state: any) => state.language.language);   
 
-    // const [languageUpdate, setLanguageUpdate] = useState(initialLanguage || "fr");
-
-
     const handleLanguage = (language: string) => {
         dispatch(setLanguage(language));
     };
