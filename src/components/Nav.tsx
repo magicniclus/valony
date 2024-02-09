@@ -36,7 +36,8 @@ const Nav = () => {
                     opacity: 1; /* Devient visible au survol */
                 }
             `}</style>
-            <div className='w-full bg-transparent flex justify-end py-1 px-4'>
+            <div className='w-full bg-transparent flex justify-between md:justify-end py-1 md:px-4 px-2'>
+                <img src="/logos/logo.png" alt="Logo" className='w-[80px] h-auto md:hidden block' style={{ marginBottom: "20px" }} />
                 <div className='flex text-[18px]'>
                     <button className={`${language !== "fr" ? "buttonOne" : ""} w-full h-[50px] font-bold mr-4 relative ${language === "fr" ? "text-textClear" : "text-white"}`} onClick={()=>handleLanguage("fr")}>FR</button>
                     <button className={`${language !== "en" ? "buttonTwo" : ""} w-full h-[50px] text-textClear font-bold relative ${language === "en" ? "text-textClear" : "text-white"}`} onClick={()=>handleLanguage("en")}>EN</button>
