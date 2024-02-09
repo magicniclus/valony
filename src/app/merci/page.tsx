@@ -4,7 +4,7 @@ import React, {useEffect} from 'react';
 
 import Footer from '@/components/Footer';
 
-const page = () => {
+const Page = () => {
     useEffect(() => {
         // Créez un élément `<a>` et configurez-le pour le téléchargement du fichier
         const link = document.createElement('a');
@@ -29,4 +29,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
