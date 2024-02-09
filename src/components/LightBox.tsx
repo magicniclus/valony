@@ -47,6 +47,7 @@ const LightBox = () => {
     const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
     const [isMuted, setIsMuted] = useState<boolean>(true);
     const [renderId, setRenderId] = useState(0); // Déplacez l'état renderId ici
+    const [isMobile, setIsMobile] = useState(false);
 
     const language = useSelector((state: any) => state.language.language);   
 
@@ -54,6 +55,24 @@ const LightBox = () => {
          setSelectedMediaIndex((prevIndex) => (idx) % listMedia.length);
             setRenderId((prevId) => prevId + 1); 
     }
+
+    useEffect(() => {
+    const checkMobile = () => {
+      const isMobile = window.matchMedia("(max-width: 800px)").matches;
+      setIsMobile(isMobile);
+    };
+
+    // vérifiez au chargement de la page
+    checkMobile();
+
+    // puis vérifiez chaque fois que la taille de la fenêtre change
+    window.addEventListener("resize", checkMobile);
+
+    // nettoyez en enlevant l'écouteur d'événement lors du démontage du composant
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
     const imageContainer = (image : string)=>{
             return (
@@ -79,13 +98,15 @@ const LightBox = () => {
     const videoContainer = ()=>{
         return (
             <div className='h-[100%] w-[100%] relative'>
-                <video className='h-[100%] w-[100%] my-auto object-cover relative' autoPlay loop muted={isMuted}>
+                <video className='h-[100%] w-[100%] my-auto object-cover relative' autoPlay loop muted={isMuted} controls={isMobile}>
                     <source src="/images/video.mp4" type="video/mp4" />
                     
                 </video>
-                    <button type="button" onClick={() => setIsMuted(!isMuted)} className='absolute top-5 right-5 bg-white/30 p-3 rounded-full hover:bg-white transition duration-300 ease-in-out'>
+                {
+                    isMobile ? null : <button type="button" onClick={() => setIsMuted(!isMuted)} className='absolute top-5 right-5 bg-white/30 p-3 rounded-full hover:bg-white transition duration-300 ease-in-out'>
                         {isMuted ? <SpeakerXMarkIcon className='text-gray w-6 h-6' /> : <SpeakerWaveIcon className='text-gray w-6 h-6' />}
                     </button>
+                }
             </div>
         )
     }
