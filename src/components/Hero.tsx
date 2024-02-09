@@ -100,10 +100,10 @@ const Hero = () => {
                         </div>
                     </div>
                     <div className='bg-gray py-5 px-5 md:mx-0 mx-auto w-full flex md:hidden relative'>
-                            <div onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute right-4 -top-[50px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or md:hidden flex'>
+                            <a href="#hero" onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute right-4 -top-[50px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or md:hidden flex'>
                                 <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
                                 <ArrowRightIcon className='text-or h-[15px] group-hover:text-white transition duration-300 ease-in-out ' />
-                            </div>
+                            </a>
                             <div className='flex justify-between h-full flex-col'>
                                 <p className='text-[10px] font-outfit text-or uppercase'>Découvrez</p>
                                 <h2 className='text-or text-[20px] font-outfit uppercase'>Les Villas SEAVEN</h2>
