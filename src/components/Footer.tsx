@@ -26,28 +26,28 @@ const Footer = () => {
                     <img src="/images/logo-white.png" alt="logo" className="w-[158px] h-auto" />
                     <div className='h-full'>
                         <div className='flex w-full justify-between'>
-                            <a href="#">
+                            <a href="https://www.facebook.com/groupeduval" target='blank'>
                                 <img src="/icons/facebook.png" alt="facebook" className="w-[6px] h-auto" />
                             </a>
-                            <a href="#">
-                                <img src="/icons/instagram.png" alt="facebook" className="w-[13px] h-auto" />
+                            <a href="https://www.instagram.com/groupe_duval/" target='blank'>
+                                <img src="/icons/instagram.png" alt="instagram" className="w-[13px] h-auto" />
                             </a>
-                            <a href="#">
-                                <img src="/icons/x.png" alt="facebook" className="w-[13px] h-auto" />   
+                            <a href=" https://twitter.com/groupe_duval" target='blank'>
+                                <img src="/icons/x.png" alt="x" className="w-[13px] h-auto" />   
                             </a>
-                            <a href="#">
-                                <img src="/icons/linkdin.png" alt="facebook" className="w-[13px] h-auto" />
+                            <a href="https://www.linkedin.com/company/groupe-duval/" target='blank'>
+                                <img src="/icons/linkdin.png" alt="linkdin" className="w-[13px] h-auto" />
                             </a>
-                            <a href="#">
-                                <img src="/icons/pomme.png" alt="facebook" className="w-[13px] h-auto" />
+                            <a href=" https://fr.viadeo.com/fr/company/groupe-duval" target='blank'>
+                                <img src="/icons/pomme.png" alt="viadeo" className="w-[13px] h-auto" />
                             </a>
-                            <a href="#">
-                                <img src="/icons/wifi.png" alt="facebook" className="w-[13px] h-auto" />
+                            <a href="https://journaldericduval.fr/" target='blank'>
+                                <img src="/icons/wifi.png" alt="journal de ric duval" className="w-[13px] h-auto" />
                             </a>
                         </div>
                         <div className='mt-9'>
-                            <a href="#" className='button text-white font-outfit text-[14px] relative'>Mentions légales</a>
-                            <a href="#" className='button text-white font-outfit text-[14px] relative ml-5'>Contactez-nous</a>
+                            <a href="https://www.groupeduval.com/mentions-legales/" target='blank' className='button text-white font-outfit text-[14px] relative'>Mentions légales</a>
+                            <a href="/#hero" className='button text-white font-outfit text-[14px] relative ml-5'>Contactez-nous</a>
                         </div>
                     </div>
                 </footer>
@@ -73,28 +73,28 @@ const Footer = () => {
                 <img src="/images/logo-white.png" alt="logo" className="w-[158px] h-auto" />
                 <div className='h-full'>
                     <div className='flex w-full justify-between'>
-                        <a href="#">
-                            <img src="/icons/facebook.png" alt="facebook" className="w-[6px] h-auto" />
-                        </a>
-                        <a href="#">
-                            <img src="/icons/instagram.png" alt="facebook" className="w-[13px] h-auto" />
-                        </a>
-                        <a href="#">
-                            <img src="/icons/x.png" alt="facebook" className="w-[13px] h-auto" />   
-                        </a>
-                        <a href="#">
-                            <img src="/icons/linkdin.png" alt="facebook" className="w-[13px] h-auto" />
-                        </a>
-                        <a href="#">
-                            <img src="/icons/pomme.png" alt="facebook" className="w-[13px] h-auto" />
-                        </a>
-                        <a href="#">
-                            <img src="/icons/wifi.png" alt="facebook" className="w-[13px] h-auto" />
-                        </a>
+                       <a href="https://www.facebook.com/groupeduval" target='blank'>
+                                <img src="/icons/facebook.png" alt="facebook" className="w-[6px] h-auto" />
+                            </a>
+                            <a href="https://www.instagram.com/groupe_duval/" target='blank'>
+                                <img src="/icons/instagram.png" alt="instagram" className="w-[13px] h-auto" />
+                            </a>
+                            <a href=" https://twitter.com/groupe_duval" target='blank'>
+                                <img src="/icons/x.png" alt="x" className="w-[13px] h-auto" />   
+                            </a>
+                            <a href="https://www.linkedin.com/company/groupe-duval/" target='blank'>
+                                <img src="/icons/linkdin.png" alt="linkdin" className="w-[13px] h-auto" />
+                            </a>
+                            <a href=" https://fr.viadeo.com/fr/company/groupe-duval" target='blank'>
+                                <img src="/icons/pomme.png" alt="viadeo" className="w-[13px] h-auto" />
+                            </a>
+                            <a href="https://journaldericduval.fr/" target='blank'>
+                                <img src="/icons/wifi.png" alt="journal de ric duval" className="w-[13px] h-auto" />
+                            </a>
                     </div>
                     <div className='mt-9'>
-                        <a href="#" className='button text-white font-outfit text-[14px] relative'>Legal Notice</a>
-                        <a href="#" className='button text-white font-outfit text-[14px] relative ml-5'>Contact us</a>
+                        <a  href="https://www.groupeduval.com/mentions-legales/" target='blank' className='button text-white font-outfit text-[14px] relative'>Legal Notice</a>
+                        <a href="/#hero" className='button text-white font-outfit text-[14px] relative ml-5'>Contact us</a>
                     </div>
                 </div>
             </footer>
