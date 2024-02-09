@@ -1,11 +1,24 @@
-import React from 'react';
+"use client";
 
-type NavProps = {
-    language: string | "fr";
-}
+import React, {useState} from 'react';
 
-const Nav : React.FC<NavProps> = ({language}) => {
-    const languageUpdate = language || "fr";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setLanguage } from "@/redux/languageSlice";
+
+const Nav = () => {
+
+    const dispatch = useDispatch();
+
+    const language = useSelector((state: any) => state.language.language);   
+
+    // const [languageUpdate, setLanguageUpdate] = useState(initialLanguage || "fr");
+
+
+    const handleLanguage = (language: string) => {
+        dispatch(setLanguage(language));
+    };
+
     return (
         <>
             <style jsx>{`
@@ -28,8 +41,8 @@ const Nav : React.FC<NavProps> = ({language}) => {
             `}</style>
             <div className='w-full bg-transparent flex justify-end py-1 px-4'>
                 <div className='flex text-[18px]'>
-                    <button className={`${languageUpdate !== "fr" ? "buttonOne" : ""} w-full h-[50px] font-bold mr-4 relative ${languageUpdate === "fr" ? "text-textClear" : "text-white"}`}>FR</button>
-                    <button className={`${languageUpdate !== "en" ? "buttonTwo" : ""} w-full h-[50px] text-textClear font-bold relative ${languageUpdate === "en" ? "text-textClear" : "text-white"}`}>EN</button>
+                    <button className={`${language !== "fr" ? "buttonOne" : ""} w-full h-[50px] font-bold mr-4 relative ${language === "fr" ? "text-textClear" : "text-white"}`} onClick={()=>handleLanguage("fr")}>FR</button>
+                    <button className={`${language !== "en" ? "buttonTwo" : ""} w-full h-[50px] text-textClear font-bold relative ${language === "en" ? "text-textClear" : "text-white"}`} onClick={()=>handleLanguage("en")}>EN</button>
                 </div>
             </div>
         </>
