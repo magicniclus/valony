@@ -157,7 +157,7 @@ const LightBox = () => {
                         </div>
                         <ForwardLine pourcentage={16} color='white' />
                     </div>
-                    <div className='w-full min-h-[559px] overflow-hidden flex justify-between items-center z-10 bg-gray'>
+                    <div className='w-full min-h-[559px] overflow-hidden flex justify-between items-center sm:flex-row flex-col z-10 bg-gray'>
                         <div className='md:h-[612px] h-full sm:w-[90%] w-full relative'>
                                 {listMedia[selectedMediaIndex].src === '/images/vignette.png' ? videoContainer() : imageContainer(listMedia[selectedMediaIndex].src)}
                              <div className='cursor-pointer sm:hidden block group absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-white/50 p-3 hover:border hover:border-white hover:bg-white transition duration-300 ease-in-out' onClick={handleNext}>
@@ -167,11 +167,11 @@ const LightBox = () => {
                                 <ArrowLeftIcon className='text-gray w-6 h-6 transition duration-300 ease-in-out' />
                             </div>
                         </div>
-                        <div className='sm:flex hidden w-[8%] h-[612px] flex-col justify-between items-center relative'>
+                        <div className='flex sm:w-[8%] w-full h-[90px] sm:h-[612px] flex-row sm:flex-col justify-around sm:justify-between items-center relative'>
                             {
                                 listMedia.map((media, index) => (
-                                    <div key={index} className={`${index === selectedMediaIndex? "background" : ""} w-full cursor-pointer relative transition duration-300 ease-in-out`} onClick={()=>handleMedia(index)}>
-                                            <img src={media.src} alt={media.alt} className={`w-[100%] h-[74px] object-cover transition duration-300 ease-in-out ${index !== selectedMediaIndex? "opacity-50" : ""}`} />
+                                    <div key={index} className={`${index === selectedMediaIndex? "background" : ""} w-[17%] sm:w-full cursor-pointer relative transition duration-300 ease-in-out`} onClick={()=>handleMedia(index)}>
+                                            <img src={media.src} alt={media.alt} className={`w-[100%] h-[50px] sm:h-[74px] object-cover transition duration-300 ease-in-out ${index !== selectedMediaIndex? "opacity-50" : ""}`} />
                                     </div>
                                 ))
                             }
