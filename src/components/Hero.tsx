@@ -6,7 +6,7 @@ import Formulaire from './Formulaire';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
-import { stopFocus } from '@/redux/formFocusSlice';
+import { stopFocus, focus as focusAction } from '@/redux/formFocusSlice';
 
 import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
@@ -67,9 +67,9 @@ const Hero = () => {
                     filter: blur(8px);
                 }
             `}</style>
-                <section className='min-h-[559px] w-full flex flex-col relative'>
+                <section id="hero" className='min-h-[559px] w-full flex flex-col relative'>
                     <div className='flex'>
-                        <div onClick={downloadPlaquette} className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
+                        <div onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
                             <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
                             <ArrowRightIcon className='text-or h-[20px] mt-2 group-hover:text-white transition duration-300 ease-in-out ' />
                         </div>
@@ -133,7 +133,7 @@ const Hero = () => {
                     filter: blur(8px);
                 }
             `}</style>
-                <section className='min-h-[559px] w-full flex flex-col relative'>
+                <section id="hero" className='min-h-[559px] w-full flex flex-col relative'>
                     <div className='flex'>
                         <div className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
                             <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
