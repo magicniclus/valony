@@ -26,6 +26,11 @@ export default function Home() {
   const dispatch = useDispatch();
   const isLoading = useSelector((state: RootState) => state.loading.isLoading);
 
+    // Sélectionnez la clé de langue actuelle de l'état Redux
+  type LanguageKey = 'fr' | 'eng';
+  const languageKey = useSelector((state: RootState) => state.language.language) as LanguageKey;
+
+  // Pré-upload des images
   useEffect(() => {
     // URLs des images à charger
     const imageSources = [
@@ -69,9 +74,17 @@ export default function Home() {
       <main>
         <Hero />
         <LightBox />
-        <BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={32} title="Jetez l’ancre sur l’île aux parfums, paradis de l’atlantique" susTitle="L’océan vous invite à embarquer sur l’Île d’Oléron. Alors commence le plus beau des voyages, le vôtre." list={["Un ensoleillement digne des rivages méditerranéens pour la lumineuse, aussi surnommée l’île aux parfums par Pierre Loti", "2 729 ha d’environnement naturel préservé (forêts, côtes rocheuses, marais, flore et espèces d’oiseaux protégés…)", "_ Le charme authentique de petits villages et hameaux aux ruelles  fleuries de roses trémières", "60 km de plages de sable fin"]} button="En savoir plus" src="oleron.jpg" />
+        {
+          languageKey === "fr" ? 
+          <BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={32} title="Jetez l’ancre sur l’île aux parfums, paradis de l’atlantique" susTitle="L’océan vous invite à embarquer sur l’Île d’Oléron. Alors commence le plus beau des voyages, le vôtre." list={["Un ensoleillement digne des rivages méditerranéens pour la lumineuse, aussi surnommée l’île aux parfums par Pierre Loti", "2 729 ha d’environnement naturel préservé (forêts, côtes rocheuses, marais, flore et espèces d’oiseaux protégés…)", "_ Le charme authentique de petits villages et hameaux aux ruelles  fleuries de roses trémières", "60 km de plages de sable fin"]} button="En savoir plus" src="oleron.jpg" />
+          :<BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={32} title="Jetez l’ancre sur l’île aux parfums, paradis de l’atlantique en" susTitle="L’océan vous invite à embarquer sur l’Île d’Oléron. Alors commence le plus beau des voyages, le vôtre." list={["Un ensoleillement digne des rivages méditerranéens pour la lumineuse, aussi surnommée l’île aux parfums par Pierre Loti", "2 729 ha d’environnement naturel préservé (forêts, côtes rocheuses, marais, flore et espèces d’oiseaux protégés…)", "_ Le charme authentique de petits villages et hameaux aux ruelles  fleuries de roses trémières", "60 km de plages de sable fin"]} button="En savoir plus" src="oleron.jpg" />
+        }
         <BackgroundPresentation />
-        <BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={64} title="Grands volumes baignés de lumière et prestations à la carte" susTitle="« Un environnement de vie exceptionnel qui respire l’élégance et le confort. »" list={["Jusqu’à 156 m2 habitables pour des villas de 5 à 6 pièces", "Grandes terrasses avec vue imprenable sur l’océan", "Vaste salon / séjour baigné de lumière naturelle", "2 à 3 stationnements et 1 local à vélos sécurisés par maison", "Magnifiques suites parentales dotées d’un grand dressing", "etc..."]} button="Découvrir toutes les prestations" src="interieur.jpg" />
+        {
+          languageKey === "fr" ? 
+          <BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={64} title="Grands volumes baignés de lumière et prestations à la carte" susTitle="« Un environnement de vie exceptionnel qui respire l’élégance et le confort. »" sitation='Cyril Guilmeau, architecte' list={["Jusqu’à 156 m2 habitables pour des villas de 5 à 6 pièces", "Grandes terrasses avec vue imprenable sur l’océan", "Vaste salon / séjour baigné de lumière naturelle", "2 à 3 stationnements et 1 local à vélos sécurisés par maison", "Magnifiques suites parentales dotées d’un grand dressing", "etc..."]} button="Découvrir toutes les prestations" src="interieur.jpg" />
+          :<BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={64} title="Grands volumes baignés de lumière et prestations à la carte en" susTitle="« Un environnement de vie exceptionnel qui respire l’élégance et le confort. »" sitation='Cyril Guilmeau, architecte' list={["Jusqu’à 156 m2 habitables pour des villas de 5 à 6 pièces", "Grandes terrasses avec vue imprenable sur l’océan", "Vaste salon / séjour baigné de lumière naturelle", "2 à 3 stationnements et 1 local à vélos sécurisés par maison", "Magnifiques suites parentales dotées d’un grand dressing", "etc..."]} button="Découvrir toutes les prestations" src="interieur.jpg" />
+        }
         <Bienvenue />
       </main>
       <Footer />
