@@ -12,9 +12,10 @@ type BluePresentationProps = {
         list: [string, string, string, string, string?, string?];
         button: string;
         src: string;
+        sitation?: string;
     };
 
-const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourcentage, title, susTitle, list, button, src }) => {
+const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourcentage, title, susTitle, list, button, src, sitation }) => {
     return (
         <section className='flex'>
             <div className='w-[121px] min-h-[625px] bg-blueClear px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
@@ -33,9 +34,18 @@ const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourc
                     <h2 className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[50px]'>
                         {title}
                     </h2>
-                    <h3 className='font-outfit text-[17px] font-bold mt-3'>
-                        {susTitle}
-                    </h3>
+                    <div className='flex flex-col'>
+                        <h3 className='font-outfit text-[17px] font-bold mt-3'>
+                            {susTitle}
+                        </h3>
+                        {
+                            sitation && (
+                                <h4 className='font-outfit text-text text-[17px]'>
+                                    {sitation}
+                                </h4>
+                            )
+                        }
+                    </div>
                     <ul className='text-[14px] font-outfit text-text mt-3'>
                         {
                             list.map((item, index) => (
