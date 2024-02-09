@@ -240,7 +240,8 @@ const StepOne = () => {
             <div className='font-outfit'>
                 <div>
                     <div className={`${step < 3 && "backgroundThree"} bg-transparent relative  md:mr-48 md:min-w-[470px]`}>
-                        <p className={`text-[18px] font-outfit uppercase items-center absolute top-0 left-0 transition duration-300 ease-in-out xl:flex hidden ${getFocus ? "lg:-translate-x-[calc(100%+15px)] " : "md:flex"} ${step < 4 ? " " : "hidden" }`}>{title}</p>
+                        <p className={`lg:hidden flex mb-5 font-outfit text-text uppercase text-[14px] transition duration-300 ease-in-out ${getFocus ? "-translate-y-[calc(100%px)] " : "lg:flex  translate-y-[calc(100%+23px)] "} ${step < 4 ? " " : "hidden" }`}>{title}</p>
+                        <p className={`text-[18px] font-outfit uppercase items-center absolute top-0 left-0 transition duration-300 ease-in-out lg:flex hidden ${getFocus ? "lg:-translate-x-[calc(100%+15px)] " : ""} ${step < 4 ? " " : "hidden" }`}>{title}</p>
                         <div className='flex'>
                             {
                                 step < 3 ?
@@ -264,9 +265,11 @@ const StepOne = () => {
                                         onChange={handleInputChange} 
                                         className="backgroundFour bg-transparent w-[95%] md:w-[450px] relative pb-3 placeholder:text-text text-[14px] md:hidden block"
                                         placeholder={
+                                            getFocus ?(
                                                 step === 1 ? 'Nom' : 
                                                 step === 2 ? 'Adresse e-mail' : 
                                                 'Numéro de téléphone'
+                                            ) : ''
                                         }
                                     /> 
                                 </>
