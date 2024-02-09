@@ -82,13 +82,12 @@ const Hero = () => {
                             </div>
                             <ForwardLine pourcentage={0} />
                         </div>
-                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col items-end justify-between z-10 relative py-4e  md:py-0 px-4'>
+                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4e  md:py-0 px-4'>
                             {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
                             <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                             <Nav />
-                            <div className='flex flex-col md:mr-38 md:mt-10 md:mx-0 mx-auto md:my-0 my-auto md:mb-32' ref={ref}>
+                            <div className='flex flex-col md:mr-38 md:mt-10 md:mx-0  md:my-0 my-auto md:mb-32' ref={ref}>
                                 <h1 className='sm:text-[45px] text-4xl font-bold text-textClear'>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
-                                <h2 className='md:hidden block text-[19px] text-textClear max-w-[350px] mt-5'>Vous souhaitez en savoir plus ? Téléchargez la plaquette</h2>
                                 <Formulaire />
                             </div>
                             <div className='bg-white py-3 px-6 rounded-r-full w-[450px] max-w-[80vw] md:mr-[170px] md:rounded-l-none rounded-l-full md:mx-0 mx-auto md:min-w-[500px] md:flex hidden'>
@@ -100,11 +99,15 @@ const Hero = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='bg-white py-5 px-6 rounded-r-full md:rounded-l-none rounded-l-full md:mx-0 mx-auto w-full flex md:hidden'>
-                            <div className='flex justify-between h-full flex-col sm:items-start items-center mx-auto'>
-                                <p className='text-[10px] font-outfit text-or text-center uppercase'>Découvrez</p>
-                                <h2 className='text-or text-[20px] font-outfit text-center uppercase'>Les Villas SEAVEN</h2>
-                                <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
+                    <div className='bg-gray py-5 px-5 md:mx-0 mx-auto w-full flex md:hidden relative'>
+                            <div onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute right-4 -top-[50px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or md:hidden flex'>
+                                <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
+                                <ArrowRightIcon className='text-or h-[15px] group-hover:text-white transition duration-300 ease-in-out ' />
+                            </div>
+                            <div className='flex justify-between h-full flex-col'>
+                                <p className='text-[10px] font-outfit text-or uppercase'>Découvrez</p>
+                                <h2 className='text-or text-[20px] font-outfit uppercase'>Les Villas SEAVEN</h2>
+                                <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center uppercase'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
                             </div>
                         </div>
                 </section>
