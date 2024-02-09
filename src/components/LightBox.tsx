@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+
 import ForwardLine from './ForwardLine';
+
 import {  ArrowLeftIcon, ArrowRightIcon, SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/outline';
+
+import { useSelector } from "react-redux";
 
 interface MediaItem {
     id: number;
@@ -43,6 +47,8 @@ const LightBox = () => {
     const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
     const [isMuted, setIsMuted] = useState<boolean>(true);
     const [renderId, setRenderId] = useState(0); // Déplacez l'état renderId ici
+
+    const language = useSelector((state: any) => state.language.language);   
 
     const handleMedia = (idx: number) => {
          setSelectedMediaIndex((prevIndex) => (idx) % listMedia.length);
@@ -92,6 +98,22 @@ const LightBox = () => {
         setSelectedMediaIndex((prevIndex) => (prevIndex - 1 + listMedia.length) % listMedia.length); // Retour à l'image précédente
     };
 
+    const fr = ()=>{
+        return (
+            <div className='flex justify-center min-w-max -translate-x-28'>
+                <p className='text-white text-[16px] rotate-[270deg] translate-y-36 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; Plongez dans l’ambiance de sEaven</p>
+            </div>
+        )
+    }
+
+     const en = ()=>{
+        return (
+            <div className='flex justify-center min-w-max -translate-x-28'>
+                <p className='text-white text-[16px] rotate-[270deg] translate-y-36 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; Plongez dans l’ambiance de sEaven</p>
+            </div>
+        )
+    }
+
     return (
         <>
             <style jsx>{`
@@ -109,9 +131,8 @@ const LightBox = () => {
             <section className='min-h-[690px] w-full flex '>
                     <div className='w-[121px] min-h-[612px] bg-gray px-4 py-10 hidden lg:flex flex-col items-center justify-between'>
                         <div className='w-full'>
-                            <div className='flex justify-center min-w-max -translate-x-28'>
-                                <p className='text-white text-[16px] rotate-[270deg] translate-y-36 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; Plongez dans l’ambiance de sEaven</p>
-                            </div>
+                            {/*  */}
+                            {language === "fr" ? fr() : en()}
                         </div>
                         <ForwardLine pourcentage={16} color='white' />
                     </div>
