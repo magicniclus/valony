@@ -1,12 +1,14 @@
 import { combineReducers, createStore } from 'redux';
 import loadingReducer from '../redux/loadingSlice';
 import formFocusSlice from '../redux/formFocusSlice';
+import languageSlice from './languageSlice';
 // Importez d'autres réducteurs si nécessaire
 
 // Combine tous vos réducteurs
 const rootReducer = combineReducers({
     loading: loadingReducer, 
-    focus: formFocusSlice
+    focus: formFocusSlice,
+    language: languageSlice,
 });
 
 // Créez et exportez le type RootState basé sur le rootReducer
