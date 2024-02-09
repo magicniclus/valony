@@ -4,16 +4,17 @@ import React, {useEffect, useState} from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
-
-import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
 import { startLoading, stopLoading} from '@/redux/loadingSlice';
 import { stopFocus, focus as focusAction } from '@/redux/formFocusSlice';
+
+import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
+
 import { addProspect } from '@/firebase/dataManager';
 
 const StepOne = () => {
+
     const getFocus = useSelector((state: RootState) => state.focus.formFocus);
     const isLoading = useSelector((state: RootState) => state.loading.isLoading);
-
     const dispatch = useDispatch();
 
     const listIndicatif = [
@@ -48,11 +49,6 @@ const StepOne = () => {
 
     const [valueDisplay, setValueDisplay] = useState<string>('');
     const [valueDisplayTwo, setValueDisplayTwo] = useState<string>('');
-
-    useEffect(() => {
-  // Logique ou actions à effectuer suite à la mise à jour de valueDisplayTwo
-        console.log(valueDisplayTwo); // Par exemple, pour déboguer
-    }, [valueDisplayTwo]);
 
     useEffect(()=>{
         if(getFocus){
@@ -150,7 +146,6 @@ const StepOne = () => {
     };
 
     const handleSubite = (e: React.MouseEvent<HTMLButtonElement>)  => {
-        console.log(name, email, phone, indicatif, checkbox);
         dispatch(startLoading()) 
         addProspect({nom: name, email: email, telephone: phone, indicatif: indicatif}).then((success)=>{
             console.log(success);
@@ -163,6 +158,7 @@ const StepOne = () => {
             setCheckbox(false);
             setIsButtonDisabled(true);
             setIsButtonDisabledTwo(true);
+            window.location.href = '/merci';
             dispatch(stopLoading())
         }).catch((error)=>{
             console.log(error);
