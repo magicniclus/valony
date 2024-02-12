@@ -33,19 +33,13 @@ export default function RootLayout({
             }}
           />
           {/* Google Ads Script */}
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=AW-16458670881"
-            strategy="afterInteractive"
-          />
-          <Script id="google-ads-script" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'AW-16458670881');
-            `}
-          </Script>
+          <script dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-WZP4H2GF');`,
+          }} />
         </Head>
         <body className={inter.className}>
           {children}
@@ -54,6 +48,7 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{
               __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZP4H2GF" height="0" width="0" style="display: none; visibility: hidden;" />`,
             }}
+            
           />
         </body>
       </html>
