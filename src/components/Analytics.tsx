@@ -9,11 +9,12 @@ export default function Analytics() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  useEffect(() => {
-    if (pathname) {
-      pageview(pathname)
-    }
-  }, [pathname, searchParams])
+useEffect(() => {
+  // Vérifiez si window est défini, ce qui indique un environnement de navigateur
+  if (typeof window !== "undefined" && pathname) {
+    pageview(pathname);
+  }
+}, [pathname, searchParams]);
 
   return (
     <>
