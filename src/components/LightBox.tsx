@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import ForwardLine from './ForwardLine';
 
 import {  ArrowLeftIcon, ArrowRightIcon, SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/outline';
 
 import { useSelector } from "react-redux";
+
+import { gsap } from 'gsap';
 
 interface MediaItem {
     id: number;
@@ -42,6 +44,8 @@ const LightBox = () => {
             alt: 'LightBox'
         },
     ]
+
+    const vignetteRefs = useRef([]);
 
     const [imgSelected, setImgSelected] = useState<string>(listMedia[0].src);
     const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
@@ -170,7 +174,7 @@ const LightBox = () => {
                         <div className='flex md:w-[8%] w-full h-[90px] md:h-[612px] flex-row md:flex-col justify-around md:justify-between md:items-end items-center relative'>
                             {
                                 listMedia.map((media, index) => (
-                                    <div key={index} className={`${index === selectedMediaIndex? "background" : ""} w-[17%] md:w-10/12 cursor-pointer relative transition duration-300 ease-in-out`} onClick={()=>handleMedia(index)}>
+                                    <div ref={el => vignetteRefs.current[index] = el} key={index} className={`${index === selectedMediaIndex? "background" : ""} w-[17%] md:w-10/12 cursor-pointer relative transition duration-300 ease-in-out`} onClick={()=>handleMedia(index)}>
                                             <img src={media.src} alt={media.alt} className={`w-[100%] h-[50px] md:h-[74px] object-cover transition duration-300 ease-in-out ${index !== selectedMediaIndex? "opacity-50" : ""}`} />
                                     </div>
                                 ))
