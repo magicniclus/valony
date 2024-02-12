@@ -1,31 +1,42 @@
-"use client"
+"use client";
 
-import { GTM_ID, pageview } from "../GTM/gtm"
-import { usePathname, useSearchParams } from "next/navigation"
-import Script from "next/script"
-import { useEffect } from "react"
+import Script from "next/script";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { GTM_ID, pageview } from "../GTM/gtm";
 
 export default function Analytics() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const router = useRouter();
 
-useEffect(() => {
-  // Vérifiez si window est défini, ce qui indique un environnement de navigateur
-  if (typeof window !== "undefined" && pathname) {
-    pageview(pathname);
-  }
-}, [pathname, searchParams]);
+  useEffect(() => {
+    // S'assurer que le routeur est prêt avant d'écouter les changements de route
+    if (!router.isReady) return;
+
+    const handleRouteChange = (url) => {
+      pageview(url);
+    };
+
+    // Écouter les changements de route
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    // Nettoyer l'écouteur d'événements lors du démontage du composant
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.isReady, router.events]); 
 
   return (
     <>
+      {/* Google Tag Manager - NoScript */}
       <noscript>
         <iframe
           src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
           height="0"
           width="0"
-          style={{ display: "none", visibility: "hidden" }}
+          style={{ display: "none", visibility: "hidden" }} 
         />
       </noscript>
+      {/* Google Tag Manager */}
       <Script
         id="gtm-script"
         strategy="afterInteractive"
@@ -39,10 +50,12 @@ useEffect(() => {
           `,
         }}
       />
+      {/* Global site tag (gtag.js) - Google Ads: AW-11128083735 */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=AW-11128083735"
         strategy="afterInteractive"
       />
+      {/* Google Analytics */}
       <Script
         id="google-analytics"
         strategy="afterInteractive"
@@ -56,5 +69,5 @@ useEffect(() => {
         }}
       />
     </>
-  )
+  );
 }
