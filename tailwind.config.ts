@@ -29,6 +29,7 @@ const config: Config = {
     },
     fontFamily: {
       outfit : ['Outfit', 'sans-serif'],
+      playfair: ['Playfair Display', 'serif']
     },
   },
   plugins: [],
