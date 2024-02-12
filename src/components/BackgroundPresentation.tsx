@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 
 import ForwardLine from './ForwardLine';
 
@@ -8,8 +8,44 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 import { useSelector } from 'react-redux';
 
+import { gsap } from 'gsap';
+
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 const BackgroundPresentation = () => {
     const language = useSelector((state: any) => state.language.language);   
+
+    const titleRef = useRef(null);
+    const susTitleRef = useRef(null);
+    const listRef = useRef(null);
+    const buttonRef = useRef(null);
+
+    useEffect(() => {
+        // Définir un délai initial pour le décalage de l'animation
+        let delay = 0.2;
+
+        // Tableau des éléments à animer
+        const elementsToAnimate = [titleRef.current, susTitleRef.current, listRef.current, buttonRef.current];
+
+        elementsToAnimate.forEach((elem) => {
+            gsap.fromTo(elem, {
+                y: "100%", // Commence un peu plus haut
+                opacity: 0, // Commence avec une opacité de 0
+            }, {
+                y: 0, // Retourne à sa position d'origine
+                opacity: 1, // Anime jusqu'à une opacité de 1
+                duration: 0.4, // Durée de l'animation
+                ease: 'easeOut', // Type d'ease pour l'animation
+                delay, // Délai avant le début de l'animation
+                scrollTrigger: {
+                    trigger: titleRef.current, // Déclencheur de l'animation au scroll
+                    start: "top 90%", // Démarre l'animation quand l'élément entre dans la vue
+                }
+            });
+
+            delay += 0.2; // Augmente le délai pour le prochain élément, créant un effet décalé
+        });
+    }, []);
 
     const fr = ()=>{
         return (
@@ -25,15 +61,15 @@ const BackgroundPresentation = () => {
                     <ForwardLine pourcentage={42} color="white" />
                 </div>
                 <div className='w-full flex md:flex-row flex-col'>
-                    <div className='md:w-[50%] w-full overflow-hidden flex justify-between bg-beige flex-col px-4 md:px-14 py-8'>
-                        <h2 className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[50px]'>
-                            Votre nouveau port d’attache à 
+                    <div className='md:w-[50%] w-full overflow-hidden flex justify-between bg-beige flex-col md:px-20 px-4 py-16'>
+                        <h2 ref={titleRef} className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[60px] font-playfair'>
+                            Votre nouveau port d’attache 
                             à La Cotinière
                         </h2>
-                        <h3 className='font-outfit text-[17px] font-bold mt-3'>
+                        <h3 ref={susTitleRef} className='font-outfit text-[17px] font-bold mt-3'>
                             Avec la plage de Saint-Pierre d’Oléron, La Cotinière est l’endroit où il fait bon se balader et se prélasser. Au milieu des cabanes de pêcheurs, on prend le temps, on fait ses achats et on s’installe en terrasse bercé par le rythme de l’océan… 
                         </h3>
-                        <ul className='text-[14px] font-outfit text-text mt-3'>
+                        <ul ref={listRef} className='text-[14px] font-outfit text-text mt-3'>
                             <li className='flex items-center'>
                                 <span className='mr-2'>-</span>
                                 Emplacement privilégié et intimité préservée
@@ -47,8 +83,8 @@ const BackgroundPresentation = () => {
                                 À 400 mètres du 1er port de pêche artisanale de Charente-Maritime 
                             </li>
                         </ul>
-                        <div className='w-full flex justify-end mt-3'>
-                            <a href="#hero" className='bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 uppercase hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
+                        <div ref={buttonRef} className='w-full flex justify-end mt-3'>
+                            <a href="#hero" className='bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
                                 Connaitre l’adresse exacte
                                 <ArrowRightIcon className='text-blueClear w-6 h-6 ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' />
                             </a>
@@ -74,7 +110,7 @@ const BackgroundPresentation = () => {
                     <ForwardLine pourcentage={42} color="white" />
                 </div>
                 <div className='w-full flex md:flex-row flex-col'>
-                    <div className='md:w-[50%] w-full overflow-hidden flex justify-between bg-beige flex-col px-4 md:px-14 py-8'>
+                    <div className='md:w-[50%] w-full overflow-hidden flex justify-between bg-beige flex-col md:px-20 px-4 py-16'>
                         <h2 className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[50px]'>
                             Votre nouveau port d’attache à 
                             à La Cotinière en
