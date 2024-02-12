@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Analytics from "@/components/Analytics";
 
 import { StoreProvider } from "../redux/StoreProvider";
 
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <StoreProvider>
       <html lang="fr">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+           <Analytics />
+           {children}</body>
       </html>
     </StoreProvider>
   );
