@@ -186,7 +186,8 @@ const Bienvenue = () => {
                             </div>
                             <div className='overflow-hidden group'>
                                     <a href="#hero" className='translate-x-1 flex bg-white rounded-r-full px-7 py-2 max-w-max text-or mt-3' ref={buttonRef1}>
-                                        Je télécharge la plaquette <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
+                                        Je télécharge la plaquette 
+                                        <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
                                     </a>
                             </div>
                         <div className='flex mt-3'>
@@ -195,12 +196,14 @@ const Bienvenue = () => {
                             </div>
                             <div className='overflow-hidden group'>
                                     <a href="#hero" className='translate-x-1 flex bg-white rounded-r-full px-7 py-2 max-w-max text-or mt-3' ref={buttonRef2}>
-                                        Je veux être contacté <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
+                                        Je veux être contacté 
+                                        <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
                                     </a>
                             </div>
                             <div className='overflow-hidden group'>
                                     <a href="#hero" className='translate-x-1 flex bg-white rounded-r-full px-7 py-2 max-w-max text-or mt-3' ref={buttonRef3}>
-                                        Je veux recevoir des informations <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
+                                        Je veux recevoir des
+                                         informations <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
                                     </a>
                             </div>
                         <div className='flex mt-3'>
