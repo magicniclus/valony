@@ -10,10 +10,18 @@ import { stopFocus, focus as focusAction } from '@/redux/formFocusSlice';
 
 import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
+import { gsap } from 'gsap';
+
 const Hero = () => {
 
     const dispatch = useDispatch();
     const ref = useRef<HTMLDivElement>(null);
+
+    const refTitle = useRef<HTMLHeadingElement>(null);
+    const refForm = useRef<HTMLDivElement>(null);
+    const refVignette = useRef<HTMLDivElement>(null);
+    const refDecouverte = useRef<HTMLDivElement>(null);
+    const logoRef = useRef<HTMLImageElement>(null);
 
     const { formFocus } = useSelector((state: RootState) => state.focus);
     const language = useSelector((state: any) => state.language.language);   
@@ -45,13 +53,29 @@ const Hero = () => {
         document.body.removeChild(link); // Nettoie en supprimant l'élément du document
     }
 
+    useEffect(() => {
+        // GSAP animations
+        gsap.fromTo([refTitle.current, logoRef.current, refForm.current, refVignette.current, refDecouverte.current], {
+            opacity:0,
+            y: "100%", // Départ de 30 pixels en bas
+        }, {
+            opacity: 1,
+            y: 0, // Arrivée à la position de départ
+            duration: 0.5, // Durée de l'animation
+            delay: 0.5, // Délai avant le début de l'animation
+            // stagger: 0.2, // Délai entre chaque animation des éléments
+            ease: 'easeOut', // Type d'animation pour une sortie plus douce
+        })
+        
+    }, []);
+
 
     const fr = ()=>{
         return(
 
             <>
              <style jsx>{`
-                .backgroundImage {
+                       .backgroundImage {
                     position: absolute;
                     top: 0; // Positionne l'image de fond pour couvrir uniquement la moitié droite
                     right: 0;
@@ -60,22 +84,33 @@ const Hero = () => {
                     background-size: cover;
                     min-height: 559px;
                     width: 100%;
+                    // transform: translatey(100%);
+                    // animation: fadeIn 0.4s ease-in-out forwards;
                     z-index: -1; // Assurez-vous que ce z-index permet à l'image d'être en arrière-plan
                 }
 
                 .blurEffect {
                     filter: blur(8px);
                 }
+
+                @keyframes fadeIn {
+                    0% {
+                        transform: translatey(100%);
+                    }
+                    100% {
+                        transform: translatey(0);
+                    }
+                }
             `}</style>
                 <section id="hero" className='min-h-[559px] w-full flex flex-col relative'>
                     <div className='flex'>
-                        <div onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
+                        <div ref={refVignette} onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
                             <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
                             <ArrowRightIcon className='text-or h-[20px] mt-2 group-hover:text-white transition duration-300 ease-in-out ' />
                         </div>
                         <div className='w-[121px] min-h-[559px] bg-white px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
                             <div className='w-full'>
-                                <img src="/logos/logo.png" alt="Logo" className='w-[91px] h-auto' style={{ marginBottom: "20px" }} />
+                                <img ref={logoRef} src="/logos/logo.png" alt="Logo" className='w-[91px] h-auto' style={{ marginBottom: "20px" }} />
                                 <div className='flex justify-center min-w-max -translate-x-11'>
                                     <p className='text-or text-[16px] rotate-[270deg] translate-y-20 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; une vue incroyable</p>
                                 </div>
@@ -87,10 +122,12 @@ const Hero = () => {
                             <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                             <Nav />
                             <div className='flex flex-col md:mr-38 md:mt-10 md:mx-0  md:my-0 my-auto md:mb-32' ref={ref}>
-                                <h1 className='sm:text-[45px] text-4xl font-bold text-textClear'>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
-                                <Formulaire />
+                                <h1 className='sm:text-[45px] text-4xl font-bold text-textClear leading-[60px] font-playfair' ref={refTitle}>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
+                                <div ref={refForm}>
+                                    <Formulaire />
+                                </div>
                             </div>
-                            <div className='bg-white py-3 px-6 rounded-r-full w-[450px] max-w-[80vw] md:mr-[170px] md:rounded-l-none rounded-l-full md:mx-0 mx-auto md:min-w-[500px] md:flex hidden'>
+                            <div className='bg-white py-3 px-6 rounded-r-full w-[450px] max-w-[80vw] md:mr-[170px] md:rounded-l-none rounded-l-full md:mx-0 mx-auto md:min-w-[500px] md:flex hidden' ref={refDecouverte}>
                                 <div className='flex justify-between h-full flex-col sm:items-start items-center'>
                                     <p className='text-[10px] font-outfit text-or text-center uppercase'>Découvrez</p>
                                     <h2 className='text-or text-[20px] font-outfit text-center uppercase'>Les Villas SEAVEN</h2>
@@ -120,7 +157,7 @@ const Hero = () => {
 
             <>
              <style jsx>{`
-                .backgroundImage {
+                    .backgroundImage {
                     position: absolute;
                     top: 0; // Positionne l'image de fond pour couvrir uniquement la moitié droite
                     right: 0;
@@ -129,11 +166,23 @@ const Hero = () => {
                     background-size: cover;
                     min-height: 559px;
                     width: 100%;
+                    animation: fadeIn 1s ease-in-out;
                     z-index: -1; // Assurez-vous que ce z-index permet à l'image d'être en arrière-plan
                 }
 
                 .blurEffect {
                     filter: blur(8px);
+                }
+
+                @keyframes fadeIn {
+                    0% {
+                        transform: translateY(100%);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
                 }
             `}</style>
                 <section id="hero" className='min-h-[559px] w-full flex flex-col relative'>
