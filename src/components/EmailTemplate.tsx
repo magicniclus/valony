@@ -22,13 +22,13 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
             <h3>{date}</h3>
             <ul>
                 <li>
-                    Nom, Prenom: <span className="font-bold">{nom}</span>
+                    Nom: <span className="font-bold">{nom}</span>
                 </li>
                 <li>
                     Email: <span className="font-bold">{email}</span>
                 </li>
                 <li>
-                    Téléphone: {indicatif ? indicatif : ""} <span className="font-bold">{telephone}</span>
+                    Téléphone: <span className="font-bold">{telephone}</span>
                 </li>
             </ul>
         </div>
