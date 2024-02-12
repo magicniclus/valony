@@ -22,9 +22,9 @@ const Footer = () => {
                         width: 100%;
                     }
                 `}</style>
-                <footer className='py-10 px-16 w-full bg-text bg-black flex justify-between items-center'>
+                <footer className='py-10 px-16 w-full bg-text bg-black flex md:flex-row flex-col justify-between items-center'>
                     <img src="/images/logo-white.png" alt="logo" className="w-[158px] h-auto" />
-                    <div className='h-full'>
+                    <div className='h-full md:mt-0 mt-10'>
                         <div className='flex w-full justify-between'>
                             <a href="https://www.facebook.com/groupeduval" target='blank'>
                                 <img src="/icons/facebook.png" alt="facebook" className="w-[6px] h-auto" />
