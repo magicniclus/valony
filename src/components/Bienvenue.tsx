@@ -106,7 +106,7 @@ const Bienvenue = () => {
                     x: "-100%",
                     opacity: 0,
                 }, {
-                    x: 0,
+                    x: 5,
                     opacity: 1,
                     duration: 0.4,
                     delay: 0.2,
@@ -184,23 +184,23 @@ const Bienvenue = () => {
                                 <img src="/icons/bullet.png" alt="bullet" className='w-[9px] h-[9px] translate-y-1.5 mr-2' />
                                 <p className='text-text flex'>Je suis intéressé(e) par l’acquisition d’une villa SEAVEN à Saint-Pierre d’Oléron.</p>
                             </div>
-                            <div className='overflow-hidden'>
+                            <div className='overflow-hidden group'>
                                     <a href="#hero" className='translate-x-1 flex bg-white rounded-r-full px-7 py-2 max-w-max text-or mt-3' ref={buttonRef1}>
-                                        Je télécharge la plaquette <ArrowRightIcon className='text-or h-[20px] ml-2' />
+                                        Je télécharge la plaquette <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
                                     </a>
                             </div>
                         <div className='flex mt-3'>
                                 <img src="/icons/bullet.png" alt="bullet" className='w-[9px] h-[9px] translate-y-1.5 mr-2' />
                                 <p className='text-text flex'>Je confirme mon intérêt et souhaite obtenir plus d’informations.</p>
                             </div>
-                            <div className='overflow-hidden'>
+                            <div className='overflow-hidden group'>
                                     <a href="#hero" className='translate-x-1 flex bg-white rounded-r-full px-7 py-2 max-w-max text-or mt-3' ref={buttonRef2}>
-                                        Je veux être contacté <ArrowRightIcon className='text-or h-[20px] ml-2' />
+                                        Je veux être contacté <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
                                     </a>
                             </div>
-                            <div className='overflow-hidden'>
+                            <div className='overflow-hidden group'>
                                     <a href="#hero" className='translate-x-1 flex bg-white rounded-r-full px-7 py-2 max-w-max text-or mt-3' ref={buttonRef3}>
-                                        Je veux recevoir des informations <ArrowRightIcon className='text-or h-[20px] ml-2' />
+                                        Je veux recevoir des informations <ArrowRightIcon className='text-or h-[20px] ml-2 group-hover:translate-x-2 transition duration-150 ease-in-out' />
                                     </a>
                             </div>
                         <div className='flex mt-3'>
