@@ -22,6 +22,7 @@ export default function RootLayout({
     <StoreProvider>
       <html lang="fr">
         <Head>
+          {/* Existing Google Tag Manager Script */}
           <script
             dangerouslySetInnerHTML={{
               __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -31,11 +32,25 @@ export default function RootLayout({
               })(window,document,'script','dataLayer','GTM-WZP4H2GF');`,
             }}
           />
+          {/* Google Ads Script */}
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=AW-16458670881"
+            strategy="afterInteractive"
+          />
+          <Script id="google-ads-script" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'AW-16458670881');
+            `}
+          </Script>
         </Head>
         <body className={inter.className}>
-          {/* End Google Tag Manager (noscript) */}
           {children}
-           <noscript
+          {/* Existing Google Tag Manager noscript */}
+          <noscript
             dangerouslySetInnerHTML={{
               __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZP4H2GF" height="0" width="0" style="display: none; visibility: hidden;" />`,
             }}
