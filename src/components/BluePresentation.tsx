@@ -100,7 +100,8 @@ const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourc
                     <div className='w-full mt-3 flex justify-end' ref={buttonRef}>
                         <a href="#hero" className='bg-white group text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
                             {button}
-                            <ArrowRightIcon className='text-blueClear w-6 h-6 ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' />
+                            {/* <ArrowRightIcon className='text-blueClear w-6 h-6 ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' /> */}
+                                <img src="/icons/arrow-blue.png" alt="arrow-right" className='w-4 h-auto ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' />
                         </a>
                     </div>
                 </div>
