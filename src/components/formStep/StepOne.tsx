@@ -316,11 +316,11 @@ const StepOne = () => {
                                         <label className='ml-3'>J’ai lu et accepte la politique de confidentialité de ce site.*</label>
                                     </div>
                                     <div className='w-full flex justify-end'>
-                                        <button type="button" className="bg-or text-white text-[20px] font-outfit py-3 w-full max-w-[129px] mt-5 rounded-full" disabled={isButtonDisabledTwo} onClick={handleSubite}>Envoyer</button>
+                                        <button type="button" className="bg-or text-white text-[20px] font-outfit py-3 w-full max-w-[129px] mt-5 rounded-full" disabled={isButtonDisabledTwo} onClick={handleSubite} id={step === 4 ? "conversion" : ""}>Envoyer</button>
                                     </div>
                                 </div>
                             }
-                            <button type="button" onClick={handleStep} disabled={isButtonDisabled} className={`${step < 4 ? " " : "hidden" }`} id={step === 4 ? "conversion" : ""}>
+                            <button type="button" onClick={handleStep} disabled={isButtonDisabled} className={`${step < 4 ? " " : "hidden" }`}>
                                 <ArrowRightCircleIcon className="h-[17px] w-auto" />
                             </button>
                         </div>
