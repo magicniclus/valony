@@ -145,21 +145,38 @@ const StepOne = () => {
         setIndicatif(e.target.value);
     };
 
-    const handleSubite = (e: React.MouseEvent<HTMLButtonElement>)  => {
+    const handleSubmite = async (e: React.MouseEvent<HTMLButtonElement>)  => {
         dispatch(startLoading()) 
         addProspect({nom: name, email: email, telephone: phone, indicatif: indicatif}).then((success)=>{
-            console.log(success);
-            dispatch(stopFocus());
-            setStep(1);
-            setName('');
-            setEmail('');
-            setPhone('');
-            setIndicatif('');
-            setCheckbox(false);
-            setIsButtonDisabled(true);
-            setIsButtonDisabledTwo(true);
-            window.location.href = '/merci';
-            dispatch(stopLoading())
+            fetch("/api/send", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({nom: name, email: email, telephone: phone, indicatif: indicatif, date: new Date().toLocaleString()}),
+          }).then((response) => {
+            if (!response.ok) {
+              return response.json().then((err) => {
+                throw new Error(err.message);
+              });
+            } else {
+              return response.json().then((data) => {
+                console.log("API Response:", data);
+                console.log(success);
+                dispatch(stopFocus());
+                setStep(1);
+                setName('');
+                setEmail('');
+                setPhone('');
+                setIndicatif('');
+                setCheckbox(false);
+                setIsButtonDisabled(true);
+                setIsButtonDisabledTwo(true);
+                window.location.href = '/merci';
+                dispatch(stopLoading())
+              });
+            }
+          });
         }).catch((error)=>{
             console.log(error);
             dispatch(stopLoading())
@@ -316,12 +333,13 @@ const StepOne = () => {
                                         <label className='ml-3'>J’ai lu et accepte la politique de confidentialité de ce site.*</label>
                                     </div>
                                     <div className='w-full flex justify-end'>
-                                        <button type="button" className="bg-or text-white text-[20px] font-outfit py-3 w-full max-w-[129px] mt-5 rounded-full" disabled={isButtonDisabledTwo} onClick={handleSubite} id={step === 4 ? "conversion" : ""}>Envoyer</button>
+                                        <button type="button" className="bg-or text-white text-[20px] font-outfit py-3 w-full max-w-[129px] mt-5 rounded-full" disabled={isButtonDisabledTwo} onClick={handleSubmite} id={step === 4 ? "conversion" : ""}>Envoyer</button>
                                     </div>
                                 </div>
                             }
                             <button type="button" onClick={handleStep} disabled={isButtonDisabled} className={`${step < 4 ? " " : "hidden" }`}>
-                                <ArrowRightCircleIcon className="h-[17px] w-auto" />
+                                {/* <ArrowRightCircleIcon className="h-[17px] w-auto" /> */}
+                                <img src="/icons/arrow-button.png" alt="arrow-right" className="h-[17px] w-auto" />
                             </button>
                         </div>
                     </div>
