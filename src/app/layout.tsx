@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { StoreProvider } from "../redux/StoreProvider";
 import Script from 'next/script';
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <StoreProvider>
       <html lang="fr">
-        <head>
+        <Head>
           {/* Google Tag Manager */}
           <Script strategy="afterInteractive">
             {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -30,7 +31,7 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-WZP4H2GF');`}
           </Script>
           {/* End Google Tag Manager */}
-        </head>
+        </Head>
         <body className={inter.className}>
           {/* Google Tag Manager (noscript) */}
           <noscript>
