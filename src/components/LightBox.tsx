@@ -45,7 +45,7 @@ const LightBox = () => {
         },
     ]
 
-    const vignetteRefs = useRef([]);
+    const vignetteRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const [imgSelected, setImgSelected] = useState<string>(listMedia[0].src);
     const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
