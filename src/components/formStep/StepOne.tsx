@@ -155,12 +155,16 @@ const StepOne = () => {
             },
             body: JSON.stringify({nom: name, email: email, telephone: phone, indicatif: indicatif, date: new Date().toLocaleString()}),
           }).then((response) => {
-            if (!response.ok) {
-              return response.json().then((err) => {
-                throw new Error(err.message);
-              });
+             if (!response.ok) {
+                return response.json().then((err) => {
+                const errorMessage = err.message || "Une erreur inconnue est survenue";
+                throw new Error(errorMessage);
+                }).catch(() => {
+                // Gestion des erreurs de parsing JSON ou d'autres erreurs réseau
+                throw new Error("Erreur lors de la communication avec l'API");
+                });
             } else {
-              return response.json().then((data) => {
+                return response.json().then((data) => {
                 console.log("API Response:", data);
                 console.log(success);
                 dispatch(stopFocus());
