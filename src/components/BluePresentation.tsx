@@ -1,8 +1,16 @@
 "use client";
 
-import React from 'react';
-import ForwardLine from './ForwardLine';
+import React, {useEffect, useRef} from 'react';
+
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+
+import ForwardLine from './ForwardLine';
+
+import { gsap } from 'gsap';
+
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type BluePresentationProps = {
         navTitle: string;
@@ -16,6 +24,39 @@ type BluePresentationProps = {
     };
 
 const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourcentage, title, susTitle, list, button, src, sitation }) => {
+
+    const titleRef = useRef(null);
+    const susTitleRef = useRef(null);
+    const listRef = useRef(null);
+    const buttonRef = useRef(null);
+
+    useEffect(() => {
+        // Définir un délai initial pour le décalage de l'animation
+        let delay = 0.2;
+
+        // Tableau des éléments à animer
+        const elementsToAnimate = [titleRef.current, susTitleRef.current, listRef.current, buttonRef.current];
+
+        elementsToAnimate.forEach((elem) => {
+            gsap.fromTo(elem, {
+                y: "100%", // Commence un peu plus haut
+                opacity: 0, // Commence avec une opacité de 0
+            }, {
+                y: 0, // Retourne à sa position d'origine
+                opacity: 1, // Anime jusqu'à une opacité de 1
+                duration: 0.4, // Durée de l'animation
+                ease: 'easeOut', // Type d'ease pour l'animation
+                delay, // Délai avant le début de l'animation
+                scrollTrigger: {
+                    trigger: titleRef.current, // Déclencheur de l'animation au scroll
+                    start: "top 90%", // Démarre l'animation quand l'élément entre dans la vue
+                }
+            });
+
+            delay += 0.2; // Augmente le délai pour le prochain élément, créant un effet décalé
+        });
+    }, []);
+
     return (
         <section className='flex'>
             <div className='w-[121px] min-h-[625px] bg-blueClear px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
@@ -30,23 +71,23 @@ const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourc
             </div>
             <div className='w-full flex md:flex-row flex-col'>
                 <div className='md:w-[50%] w-full min-h-[559px] overflow-hidden md:flex hidden justify-between items-center bg-gray bg-cover bg-center' style={{"backgroundImage": `url(/images/${src})`}}></div>
-                <div className='md:w-[50%] w-full min-h-[559px] overflow-hidden flex justify-between items-start bg-blueClearClear flex-col md:px-14 px-4 py-8'>
-                    <h2 className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[50px]'>
+                <div className='md:w-[50%] w-full min-h-[559px] overflow-hidden flex justify-between items-start bg-blueClearClear flex-col md:px-20 px-4 py-16'>
+                    <h2 className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[60px] font-playfair' ref={titleRef}>
                         {title}
                     </h2>
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col' ref={susTitleRef}>
                         <h3 className='font-outfit text-[17px] font-bold mt-3'>
                             {susTitle}
                         </h3>
                         {
                             sitation && (
-                                <h4 className='font-outfit text-text text-[17px]'>
+                                <h4 className='font-outfit text-[17px]'>
                                     {sitation}
                                 </h4>
                             )
                         }
                     </div>
-                    <ul className='text-[14px] font-outfit text-text mt-3'>
+                    <ul className='text-[14px] font-outfit text-text mt-3' ref={listRef}>
                         {
                             list.map((item, index) => (
                                 <li key={index} className='flex items-center mt-2'>
@@ -56,8 +97,8 @@ const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourc
                             ))
                         }
                     </ul>
-                    <div className='w-full mt-3 flex justify-end'>
-                        <a href="#hero" className='bg-white group text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 uppercase hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
+                    <div className='w-full mt-3 flex justify-end' ref={buttonRef}>
+                        <a href="#hero" className='bg-white group text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
                             {button}
                             <ArrowRightIcon className='text-blueClear w-6 h-6 ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' />
                         </a>
