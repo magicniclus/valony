@@ -320,7 +320,7 @@ const StepOne = () => {
                                     </div>
                                 </div>
                             }
-                            <button type="button" onClick={handleStep} disabled={isButtonDisabled} className={`${step < 4 ? " " : "hidden" }`}>
+                            <button type="button" onClick={handleStep} disabled={isButtonDisabled} className={`${step < 4 ? " " : "hidden" }`} id={step === 4 ? "conversion" : ""}>
                                 <ArrowRightCircleIcon className="h-[17px] w-auto" />
                             </button>
                         </div>
