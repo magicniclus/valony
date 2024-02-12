@@ -24,6 +24,9 @@ export default function RootLayout({
   return (
     <StoreProvider>
       <html lang="fr">
+        <head>
+          <link rel="icon" href="logos/favicon.png" sizes="any" />
+        </head>
         <body className={inter.className}>
           {children}
         </body>
