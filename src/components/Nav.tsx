@@ -59,8 +59,8 @@ const Nav = () => {
             <div className='w-full bg-transparent flex justify-between md:justify-end py-1 md:px-4 px-2'>
                 <img ref={logoRef} src="/logos/logo.png" alt="Logo" className='w-[80px] h-auto md:hidden block' style={{ marginBottom: "20px" }} />
                 <div className='flex text-[18px]' ref={refLanguage}>
-                    <button className={`${language !== "fr" ? "buttonOne" : ""} w-full h-[50px] font-bold mr-4 relative ${language === "fr" ? "text-textClear" : "text-white"}`} onClick={()=>handleLanguage("fr")}>FR</button>
-                    <button className={`${language !== "en" ? "buttonTwo" : ""} w-full h-[50px] text-textClear font-bold relative ${language === "en" ? "text-textClear" : "text-white"}`} onClick={()=>handleLanguage("en")}>EN</button>
+                    <button className={`${language !== "fr" ? "buttonOne" : ""} font-outfit w-full h-[50px] font-normal hover:font-bold text-[18px] mr-4 relative ${language === "fr" ? "text-text" : "text-white"}`} onClick={()=>handleLanguage("fr")}>FR</button>
+                    <button className={`${language !== "en" ? "buttonTwo" : ""} font-outfit w-full h-[50px] text-textClear font-normal hover:font-bold text-[18px] relative ${language === "en" ? "text-text" : "text-white"}`} onClick={()=>handleLanguage("en")}>EN</button>
                 </div>
             </div>
         </>
