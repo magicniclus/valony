@@ -1,0 +1,19 @@
+<svg id="Composant_82_7" data-name="Composant 82 – 7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18.724" height="9.975" viewBox="0 0 18.724 9.975">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #256068;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_298" data-name="Rectangle 298" class="cls-1" width="18.724" height="9.975"/>
+    </clipPath>
+  </defs>
+  <g id="Groupe_3406" data-name="Groupe 3406" class="cls-2">
+    <path id="Tracé_3049" data-name="Tracé 3049" class="cls-1" d="M13.213,1.654l2.169,2.169L0,3.842V6.183l15.37-.019L13.213,8.32l1.655,1.655,3.058-3.057a2.731,2.731,0,0,0,0-3.861L14.867,0Z"/>
+  </g>
+</svg>
