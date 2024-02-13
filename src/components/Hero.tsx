@@ -103,7 +103,7 @@ const Hero = () => {
                 }                
 
                 @keyframes fadeIn {
-                    0% {
+                    0% {    
                         transform: translatey(100%);
                     }
                     100% {
