@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 
 import ForwardLine from './ForwardLine';
 
@@ -47,6 +47,8 @@ const BackgroundPresentation = () => {
         });
     }, []);
 
+    const [arrowIsHover, setArrowIsHover] = useState(false);
+
     const fr = ()=>{
         return (
             <section className='flex bg-cover bg-center w-full' style={{"backgroundImage": "url(/images/exterieur.jpg)"}}>
@@ -54,7 +56,7 @@ const BackgroundPresentation = () => {
                     <div className='w-full'>
                         <div className='w-full'>
                                 <div className='flex justify-center min-w-max -translate-x-[112px]'>
-                                    <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; accès PRIVILÉGIÉ aux TRÉSORS DE L’ÎLE</p>
+                                    <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; accès PRIVILÉGIÉ aux TRÉSORS DE L’ÎLE</p>
                                 </div>
                             </div>
                     </div>
@@ -84,10 +86,12 @@ const BackgroundPresentation = () => {
                             </li>
                         </ul>
                         <div ref={buttonRef} className='w-full flex justify-end mt-3'>
-                            <a href="#hero" className='bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
+                            <a onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} href="#hero" className='bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
                                 Connaitre l’adresse exacte
-                                {/* <ArrowRightIcon className='text-blueClear w-6 h-6 ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' /> */}
-                                <img src="/icons/arrow-blue.png" alt="arrow-right" className='w-4 h-auto ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' />
+                                {
+                                arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] ml-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-blue.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] ml-2 transition duration-300 ease-in-out' />
+                                }
+                                {/* <img src="/icons/arrow-blue.png" alt="arrow-right" className='w-4 h-auto ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' /> */}
                             </a>
                         </div>
                     </div>
@@ -104,7 +108,7 @@ const BackgroundPresentation = () => {
                     <div className='w-full'>
                         <div className='w-full'>
                                 <div className='flex justify-center min-w-max -translate-x-[112px]'>
-                                    <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; accès PRIVILÉGIÉ aux TRÉSORS DE L’ÎLE</p>
+                                    <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; accès PRIVILÉGIÉ aux TRÉSORS DE L’ÎLE</p>
                                 </div>
                             </div>
                     </div>
@@ -137,6 +141,7 @@ const BackgroundPresentation = () => {
                             <a href="#hero" className='bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 uppercase hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
                                 Connaitre l’adresse exacte
                                 <ArrowRightIcon className='text-blueClear w-6 h-6 ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' />
+                                {/* <img src="/icons/arrow-blue.png" alt="arrow-right" className='w-4 h-auto ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' /> */}
                             </a>
                         </div>
                     </div>
