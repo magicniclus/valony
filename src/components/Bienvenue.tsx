@@ -143,7 +143,7 @@ const Bienvenue = () => {
                 }
             `}</style>
             <section className='flex 2xl:max-h-[750px]'>
-                <div className='w-[121px] min-h-[912px] px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
+                <div className='w-[121px] px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
                     <div className='w-full'>
                         <div className='w-full'>
                                 <div className='flex justify-center min-w-max -translate-x-[65px]'>
