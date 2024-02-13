@@ -125,11 +125,11 @@ const StepOne = () => {
                 setPlaceholder('Nom');
                 break;
             case 2:
-                setTitle('Je laisse ');
+                setTitle('Pour plus d’informations, c’est ici ');
                 setPlaceholder('mon adresse mail');
                 break;
             case 3:
-                setTitle('Je souhaite être rappelé au');
+                setTitle('Pour plus d’informations, c’est ici ');
                 setPhoneNumber(['Indicatif Pays', '06 XX XX XX XX']);
                 break;
             case 4:
@@ -261,8 +261,22 @@ const StepOne = () => {
             <div className='font-outfit'>
                 <div>
                     <div className={`${step < 3 && "backgroundThree"} bg-transparent relative  md:mr-48 md:min-w-[470px]`}>
-                        <p className={`lg:hidden flex mb-5 font-outfit text-text uppercase text-[14px] transition duration-300 ease-in-out ${getFocus ? "-translate-y-[calc(100%px)] " : "lg:flex  translate-y-[calc(100%+23px)] "} ${step < 4 ? " " : "hidden" }`}>{title}</p>
-                        <p className={`text-[18px] font-outfit uppercase items-center absolute top-0 left-0 transition duration-300 ease-in-out lg:flex hidden ${getFocus ? "lg:-translate-x-[calc(100%+15px)] " : ""} ${step < 4 ? " " : "hidden" }`}>{title}</p>
+                        <div className={` transition duration-300 ease-in-out ${getFocus ? "-translate-y-[calc(100%px)] " : "lg:flex  translate-y-[calc(100%px)] "}`}>
+                            <p className={`lg:hidden flex flex-col font-outfit text-text uppercase text-[14px] transition duration-300 ease-in-out ${step < 4 ? " " : "hidden" } ${getFocus ? "-translate-y-[calc(100%px)] " : "lg:flex  translate-y-[calc(100%+5px)] "} " : ""} `}>{title} <span className='text-textClear text-[10px]'>
+                                { getFocus ? (
+                                    step === 1 ? 'Saisissez votre nom' : 
+                                    step === 2 ? 'Votre adresse électronique' : 
+                                    step === 3 ? 'Vos coordonnées téléphoniques' : ''
+                                    ) : ''}
+                                </span></p>
+                            <p className={`text-[18px] flex-col font-outfit uppercase items-end absolute top-0 left-0 transition duration-300 ease-in-out lg:flex hidden ${getFocus ? "lg:-translate-x-[calc(100%+15px)] " : ""} ${step < 4 ? " " : "hidden" }`}>{title}<span className='text-textClear text-[10px]'>
+                                { getFocus ? (
+                                    step === 1 ? 'Saisissez votre nom' : 
+                                    step === 2 ? 'Saisissez votre adresse électronique' : 
+                                    step === 3 ? 'Saisissez vos coordonnées téléphoniques' : ''
+                                    ) : ''}
+                                </span></p>
+                        </div>
                         <div className='flex'>
                             {
                                 step < 3 ?
