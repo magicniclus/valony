@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 
 import ForwardLine from './ForwardLine';
 import Nav from './Nav';
@@ -26,6 +26,8 @@ const Hero = () => {
     const { formFocus } = useSelector((state: RootState) => state.focus);
     const language = useSelector((state: any) => state.language.language);   
     const backgroundClass = formFocus ? 'background blur' : 'background';
+
+    const [arrowIsHover, setArrowIsHover] = useState(false);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -93,6 +95,13 @@ const Hero = () => {
                     filter: blur(8px);
                 }
 
+                @media screen and (max-width: 768px) {
+                    .backgroundImage{
+                        background: url('/background/hero-mobil.png') top center no-repeat;
+                    background-size: cover;
+                    }
+                }                
+
                 @keyframes fadeIn {
                     0% {
                         transform: translatey(100%);
@@ -104,15 +113,17 @@ const Hero = () => {
             `}</style>
                 <section id="hero" className='min-h-[559px] w-full flex flex-col relative'>
                     <div className='flex'>
-                        <div ref={refVignette} onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
-                            <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
-                            <ArrowRightIcon className='text-or h-[20px] mt-2 group-hover:text-white transition duration-300 ease-in-out ' />
+                        <div ref={refVignette} onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
+                            <p onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='text-or font-extrabold text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
+                            {
+                                arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-or.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' />
+                            }
                         </div>
                         <div className='w-[121px] min-h-[559px] bg-white px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
                             <div className='w-full'>
                                 <img ref={logoRef} src="/logos/logo.png" alt="Logo" className='w-[91px] h-auto' style={{ marginBottom: "20px" }} />
                                 <div className='flex justify-center min-w-max -translate-x-11'>
-                                    <p className='text-or text-[16px] rotate-[270deg] translate-y-20 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; une vue incroyable</p>
+                                    <p className='text-or text-[16px] rotate-[270deg] translate-y-20 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; une vue incroyable</p>
                                 </div>
                             </div>
                             <ForwardLine pourcentage={0} />
@@ -131,20 +142,25 @@ const Hero = () => {
                                 <div className='flex justify-between h-full flex-col sm:items-start items-center'>
                                     <p className='text-[10px] font-outfit text-or text-center uppercase'>Découvrez</p>
                                     <h2 className='text-or text-[20px] font-outfit text-center uppercase'>Les Villas SEAVEN</h2>
-                                    <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] translate-x-[160px] md:block hidden' /></h3>
+                                    <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)
+                                        {/* <ArrowDownIcon className='text-text h-[20px] translate-x-[160px] md:block hidden' /> */}
+                                        <img src="/icons/arrow-black.png" alt="arrow" className='h-[20px] translate-x-[160px]' />
+                                    </h3>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className='bg-gray py-5 px-5 md:mx-0 mx-auto w-full flex md:hidden relative'>
-                            <a href="#hero" onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute right-4 -top-[50px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or md:hidden flex'>
+                            <a onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} href="#hero" onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute right-4 -top-[50px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or md:hidden flex'>
                                 <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
-                                <ArrowRightIcon className='text-or h-[15px] group-hover:text-white transition duration-300 ease-in-out ' />
+                               {
+                                 arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-or.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' />
+                                }
                             </a>
                             <div className='flex justify-between h-full flex-col'>
                                 <p className='text-[10px] font-outfit text-or uppercase'>Découvrez</p>
                                 <h2 className='text-or text-[20px] font-outfit uppercase'>Les Villas SEAVEN</h2>
-                                <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center uppercase'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
+                                <h3 className=' text-[18px] font-outfit sm:w-full flex justify-between items-center uppercase text-white'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
                             </div>
                         </div>
                 </section>
