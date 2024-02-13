@@ -98,7 +98,7 @@ const Hero = () => {
                 @media screen and (max-width: 768px) {
                     .backgroundImage{
                         background: url('/background/hero-mobil.png') top center no-repeat;
-                    background-size: cover;
+                        background-size: cover;
                     }
                 }                
 
