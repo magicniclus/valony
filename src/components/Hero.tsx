@@ -128,11 +128,11 @@ const Hero = () => {
                             </div>
                             <ForwardLine pourcentage={0} />
                         </div>
-                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4e  md:py-0 px-4'>
+                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4e px-4'>
                             {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
                             <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                             <Nav />
-                            <div className='flex flex-col md:mr-38 md:mt-10 md:mx-0  md:my-0 my-auto md:mb-32' ref={ref}>
+                            <div className='flex flex-col md:ml-0 md:mt-10 md:mx-0  md:my-0 my-auto md:mb-32' ref={ref}>
                                 <h1 className='sm:text-[45px] text-4xl font-bold text-textClear leading-[60px] font-playfair' ref={refTitle}>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
                                 <div ref={refForm}>
                                     <Formulaire />
@@ -170,10 +170,9 @@ const Hero = () => {
 
     const en = ()=>{
         return (
-
-            <>
+<>
              <style jsx>{`
-                    .backgroundImage {
+                       .backgroundImage {
                     position: absolute;
                     top: 0; // Positionne l'image de fond pour couvrir uniquement la moitié droite
                     right: 0;
@@ -182,7 +181,8 @@ const Hero = () => {
                     background-size: cover;
                     min-height: 559px;
                     width: 100%;
-                    animation: fadeIn 1s ease-in-out;
+                    // transform: translatey(100%);
+                    // animation: fadeIn 0.4s ease-in-out forwards;
                     z-index: -1; // Assurez-vous que ce z-index permet à l'image d'être en arrière-plan
                 }
 
@@ -190,55 +190,72 @@ const Hero = () => {
                     filter: blur(8px);
                 }
 
+                @media screen and (max-width: 768px) {
+                    .backgroundImage{
+                        background: url('/background/hero-mobil.png') top center no-repeat;
+                        background-size: cover;
+                    }
+                }                
+
                 @keyframes fadeIn {
-                    0% {
-                        transform: translateY(100%);
-                        opacity: 0;
+                    0% {    
+                        transform: translatey(100%);
                     }
                     100% {
-                        transform: translateY(0);
-                        opacity: 1;
+                        transform: translatey(0);
                     }
                 }
             `}</style>
                 <section id="hero" className='min-h-[559px] w-full flex flex-col relative'>
                     <div className='flex'>
-                        <div className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
-                            <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
-                            <ArrowRightIcon className='text-or h-[20px] mt-2 group-hover:text-white transition duration-300 ease-in-out ' />
+                        <div ref={refVignette} onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
+                            <p onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='text-or font-extrabold text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
+                            {
+                                arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-or.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' />
+                            }
                         </div>
                         <div className='w-[121px] min-h-[559px] bg-white px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
                             <div className='w-full'>
-                                <img src="/logos/logo.png" alt="Logo" className='w-[91px] h-auto' style={{ marginBottom: "20px" }} />
+                                <img ref={logoRef} src="/logos/logo.png" alt="Logo" className='w-[91px] h-auto' style={{ marginBottom: "20px" }} />
                                 <div className='flex justify-center min-w-max -translate-x-11'>
-                                    <p className='text-or text-[16px] rotate-[270deg] translate-y-20 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; une vue incroyable</p>
+                                    <p className='text-or text-[16px] rotate-[270deg] translate-y-20 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; une vue incroyable</p>
                                 </div>
                             </div>
                             <ForwardLine pourcentage={0} />
                         </div>
-                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col items-end justify-between z-10 relative py-4e  md:py-0 px-4'>
+                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4e px-4'>
                             {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
                             <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                             <Nav />
-                            <div className='flex flex-col md:mr-38 md:mt-10 md:mx-0 mx-auto md:my-0 my-auto md:mb-32' ref={ref}>
-                                <h1 className='sm:text-[45px] text-4xl font-bold text-textClear'>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan en ?</h1>
-                                <h2 className='md:hidden block text-[19px] text-textClear max-w-[350px] mt-5'>Vous souhaitez en savoir plus ? Téléchargez la plaquette</h2>
-                                <Formulaire />
+                            <div className='flex flex-col md:ml-0 md:mt-10 md:mx-0  md:my-0 my-auto md:mb-32' ref={ref}>
+                                <h1 className='sm:text-[45px] text-4xl font-bold text-textClear leading-[60px] font-playfair' ref={refTitle}>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
+                                <div ref={refForm}>
+                                    <Formulaire />
+                                </div>
                             </div>
-                            <div className='bg-white py-3 px-6 rounded-r-full w-[450px] max-w-[80vw] md:mr-[170px] md:rounded-l-none rounded-l-full md:mx-0 mx-auto md:min-w-[500px] md:flex hidden'>
+                            <div className='bg-white py-3 px-6 rounded-r-full w-[450px] max-w-[80vw] md:mr-[170px] md:rounded-l-none rounded-l-full md:mx-0 mx-auto md:min-w-[500px] md:flex hidden' ref={refDecouverte}>
                                 <div className='flex justify-between h-full flex-col sm:items-start items-center'>
                                     <p className='text-[10px] font-outfit text-or text-center uppercase'>Découvrez</p>
                                     <h2 className='text-or text-[20px] font-outfit text-center uppercase'>Les Villas SEAVEN</h2>
-                                    <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] translate-x-[160px] md:block hidden' /></h3>
+                                    <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)
+                                        {/* <ArrowDownIcon className='text-text h-[20px] translate-x-[160px] md:block hidden' /> */}
+                                        <img src="/icons/arrow-black.png" alt="arrow" className='h-[20px] translate-x-[160px]' />
+                                    </h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className='bg-white py-5 px-6 rounded-r-full md:rounded-l-none rounded-l-full md:mx-0 mx-auto w-full flex md:hidden'>
-                            <div className='flex justify-between h-full flex-col sm:items-start items-center mx-auto'>
-                                <p className='text-[10px] font-outfit text-or text-center uppercase'>Découvrez</p>
-                                <h2 className='text-or text-[20px] font-outfit text-center uppercase'>Les Villas SEAVEN</h2>
-                                <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
+                    <div className='bg-gray py-5 px-5 md:mx-0 mx-auto w-full flex md:hidden relative'>
+                            <a onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} href="#hero" onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute right-4 -top-[50px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or md:hidden flex'>
+                                <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
+                               {
+                                 arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-or.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' />
+                                }
+                            </a>
+                            <div className='flex justify-between h-full flex-col'>
+                                <p className='text-[10px] font-outfit text-or uppercase'>Découvrez</p>
+                                <h2 className='text-or text-[20px] font-outfit uppercase'>Les Villas SEAVEN</h2>
+                                <h3 className=' text-[18px] font-outfit sm:w-full flex justify-between items-center uppercase text-white'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
                             </div>
                         </div>
                 </section>
