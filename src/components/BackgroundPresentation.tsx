@@ -4,13 +4,9 @@ import React, {useRef, useEffect, useState} from 'react';
 
 import ForwardLine from './ForwardLine';
 
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-
 import { useSelector } from 'react-redux';
 
 import { gsap } from 'gsap';
-
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const BackgroundPresentation = () => {
     const language = useSelector((state: any) => state.language.language);   
@@ -69,7 +65,7 @@ const BackgroundPresentation = () => {
                             à La Cotinière
                         </h2>
                         <h3 ref={susTitleRef} className='font-outfit text-[17px] font-bold mt-3'>
-                            Avec la plage de Saint-Pierre d’Oléron, La Cotinière est l’endroit où il fait bon se balader et se prélasser. Au milieu des cabanes de pêcheurs, on prend le temps, on fait ses achats et on s’installe en terrasse bercé par le rythme de l’océan… 
+                            Avec la plage de Saint-Pierre dOléron, La Cotinière est l&apos;endroit où il fait bon se balader et se prélasser. Au milieu des cabanes de pêcheurs, on prend le temps, on fait ses achats et on s&apos;installe en terrasse bercé par le rythme de l’océan… 
                         </h3>
                         <ul ref={listRef} className='text-[14px] font-outfit text-text mt-3'>
                             <li className='flex items-center'>
@@ -78,7 +74,7 @@ const BackgroundPresentation = () => {
                             </li>
                             <li className='flex items-center mt-2'>
                                 <span className='mr-2'>-</span>
-                                Accès direct à la plage, au plus près des trésors naturels de l’île 
+                                Accès direct à la plage, au plus près des trésors naturels de l&apos;île 
                             </li>
                             <li className='flex items-center mt-2'>
                                 <span className='mr-2'>-</span>
@@ -87,7 +83,7 @@ const BackgroundPresentation = () => {
                         </ul>
                         <div ref={buttonRef} className='w-full flex justify-end mt-3'>
                             <a onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} href="#hero" className='bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
-                                Connaitre l’adresse exacte
+                                Connaitre l&apos;adresse exacte
                                 {
                                 arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] ml-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-blue.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] ml-2 transition duration-300 ease-in-out' />
                                 }
@@ -108,7 +104,7 @@ const BackgroundPresentation = () => {
                     <div className='w-full'>
                         <div className='w-full'>
                                 <div className='flex justify-center min-w-max -translate-x-[112px]'>
-                                    <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; VIP ACCESS TO THE ISLAND'S TREASURES</p>
+                                    <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; VIP ACCESS TO THE ISLAND&apos;S TREASURES</p>
                                 </div>
                             </div>
                     </div>
@@ -120,7 +116,7 @@ const BackgroundPresentation = () => {
                             Your new local port: La Cotinière
                         </h2>
                         <h3 ref={susTitleRef} className='font-outfit text-[17px] font-bold mt-3'>
-                            With the Saint-Pierre d'Oléron beach, La Cotinière is the perfect place for wandering and lounging. Amidst the fishermen's huts, you can take your time, do some shopping, and relax on a terrace and be rocked by the rhythm of the ocean...
+                            With the Saint-Pierre d&apos;Oléron beach, La Cotinière is the perfect place for wandering and lounging. Amidst the fishermen&apos;s huts, you can take your time, do some shopping, and relax on a terrace and be rocked by the rhythm of the ocean...
                         </h3>
                         <ul ref={listRef} className='text-[14px] font-outfit text-text mt-3'>
                             <li className='flex items-center'>
@@ -129,7 +125,7 @@ const BackgroundPresentation = () => {
                             </li>
                             <li className='flex items-center mt-2'>
                                 <span className='mr-2'>-</span>
-                                Direct access to the beach, close to the Island's natural treasures 
+                                Direct access to the beach, close to the Island&apos;s natural treasures 
                             </li>
                             <li className='flex items-center mt-2'>
                                 <span className='mr-2'>-</span>
