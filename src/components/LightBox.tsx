@@ -126,15 +126,15 @@ const LightBox = () => {
     const fr = ()=>{
         return (
             <div className='flex justify-center min-w-max -translate-x-28'>
-                <p className='text-white text-[16px] rotate-[270deg] translate-y-36 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; Plongez dans l’ambiance de sEaven</p>
+                <p className='text-white text-[16px] rotate-[270deg] translate-y-36 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; Plongez dans l’ambiance de seaven</p>
             </div>
         )
     }
 
      const en = ()=>{
         return (
-            <div className='flex justify-center min-w-max -translate-x-28'>
-                <p className='text-white text-[16px] rotate-[270deg] translate-y-36 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; Plongez dans l’ambiance de sEaven</p>
+            <div className='flex justify-center min-w-max -translate-x-36'>
+                <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit' style={{ width: "max-content" }}>&rsaquo; IMMERSE YOURSELF IN SEAVEN’S ATMOSPHERE</p>
             </div>
         )
     }
