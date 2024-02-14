@@ -1,16 +1,22 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useRouter } from 'next/navigation';
+
 import { RootState } from "@/redux/store";
-import Loader from "@/components/Loader";
 import { stopLoading } from "@/redux/loadingSlice";
+
+import Loader from "@/components/Loader";
 import Hero from "@/components/Hero";
 import LightBox from "@/components/LightBox";
 import BluePresentation from "@/components/BluePresentation";
 import BackgroundPresentation from "@/components/BackgroundPresentation";
 import Bienvenue from "@/components/Bienvenue";
 import Footer from "@/components/Footer";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "@/redux/languageSlice";
 
 const preloadImage = (src: string): Promise<void> => {
   return new Promise((resolve, reject) => {
@@ -22,11 +28,11 @@ const preloadImage = (src: string): Promise<void> => {
 };
 
 export default function Home() {
-
+  
   const dispatch = useDispatch();
   const isLoading = useSelector((state: RootState) => state.loading.isLoading);
-
-    // Sélectionnez la clé de langue actuelle de l'état Redux
+  
+  // Sélectionnez la clé de langue actuelle de l'état Redux
   type LanguageKey = 'fr' | 'eng';
   const languageKey = useSelector((state: RootState) => state.language.language) as LanguageKey;
 
@@ -65,9 +71,22 @@ export default function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    // Création d'un objet URL à partir de l'URL actuelle du navigateur
+    const currentUrl = new URL(window.location.href);
+    // Accès au paramètre de recherche 'lang'
+    const lang = currentUrl.searchParams.get("lang");
+    
+    if (lang) {
+      // Logique pour définir la langue basée sur le paramètre 'lang'
+       dispatch(setLanguage(lang));
+    }
+  }, []);
+
   if (isLoading) {
     return <Loader />;
   }
+
 
   return (
     <>
