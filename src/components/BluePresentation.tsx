@@ -15,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 type BluePresentationProps = {
         navTitle: string;
         navPourcentage: number;
+        navTransform?: string;
         title: string;
         susTitle: string;
         list: [string, string, string, string, string?, string?];
@@ -23,7 +24,7 @@ type BluePresentationProps = {
         sitation?: string;
     };
 
-const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourcentage, title, susTitle, list, button, src, sitation }) => {
+const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourcentage, navTransform, title, susTitle, list, button, src, sitation }) => {
 
     const titleRef = useRef(null);
     const susTitleRef = useRef(null);
@@ -64,7 +65,7 @@ const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourc
             <div className='w-[121px] min-h-[625px] bg-blueClear px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
                 <div className='w-full'>
                     <div className='w-full'>
-                            <div className='flex justify-center min-w-max -translate-x-[72px]'>
+                            <div className={`flex justify-center min-w-max ${!navTransform ? "-translate-x-[72px]" :  navTransform}`}>
                                 <p className='text-white text-[16px] rotate-[270deg] translate-y-32 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; {navTitle}</p>
                             </div>
                         </div>
