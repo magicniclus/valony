@@ -17,13 +17,13 @@ const Footer = () => {
 
   // Définition des icônes
   const icons = {
-    facebook: "facebook",
-    instagram: "instagram",
-    twitter: "x",
-    linkedin: "linkdin",
-    pomme: "pomme",
-    wifi: "wifi",
-  };
+    facebook: { name: "facebook", url: "https://www.facebook.com/groupeduval" },
+    instagram: { name: "instagram", url: "https://www.instagram.com/groupe_duval/" },
+    twitter: { name: "x", url: "https://twitter.com/groupe_duval" },
+    linkedin: { name: "linkdin", url: "https://www.linkedin.com/company/groupe-duval/" },
+    viadeo: { name: "pomme", url: "https://fr.viadeo.com/fr/company/groupe-duval" },
+    blog: { name: "wifi", url: "https://journaldericduval.fr/" },
+};
 
   // Fonction pour changer l'icône au survol
   const handleMouseEnter = (iconName: string) => {
@@ -37,18 +37,19 @@ const Footer = () => {
 
   // Générer les liens d'icônes
   const renderIconLinks = () => {
-    return Object.entries(icons).map(([name, icon]) => (
-      <a href="#" target="blank" key={name}
-         onMouseEnter={() => handleMouseEnter(name)}
-         onMouseLeave={handleMouseLeave}
-         className={`${activeIcon === name ? 'bg-white w-[17px] h-[17px] rounded-sm flex justify-center items-center' : 'bg-text w-[17px] h-[17px] flex justify-center items-center'}`}
-         >
-        <img src={`${basePath}${activeIcon === name ? `${icon}-black.png` : `${icon}.png`}`}
-             alt={name}
-             className={`w-[${icon === "facebook" ? "6" : "13"}px] h-auto`} />
-      </a>
+    return Object.entries(icons).map(([name, { name: iconName, url }]) => (
+        <a href={url} target="blank" key={name}
+            onMouseEnter={() => handleMouseEnter(name)}
+            onMouseLeave={handleMouseLeave}
+            className={`${activeIcon === name ? 'bg-white w-[17px] h-[17px] rounded-sm flex justify-center items-center' : 'bg-text w-[17px] h-[17px] flex justify-center items-center'}`}
+            >
+            <img src={`${basePath}${activeIcon === name ? `${iconName}-black.png` : `${iconName}.png`}`}
+                alt={name}
+                className={`w-[${iconName === "facebook" ? "6" : "13"}px] h-auto`} />
+        </a>
     ));
-  };
+};
+
     const fr = ()=>{
         return (
             <>
