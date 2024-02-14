@@ -60,7 +60,7 @@ const Nav = () => {
                 <img ref={logoRef} src="/logos/logo.png" alt="Logo" className='w-[80px] h-auto md:hidden block' style={{ marginBottom: "20px" }} />
                 <div className='flex text-[18px]' ref={refLanguage}>
                     <button className={`${language !== "fr" ? "buttonOne" : ""} font-outfit w-full h-[50px] font-normal hover:font-bold text-[18px] mr-4 relative ${language === "fr" ? "text-text" : "text-white"}`} onClick={()=>handleLanguage("fr")}>FR</button>
-                    <button className={`${language !== "en" ? "buttonTwo" : ""} font-outfit w-full h-[50px] text-textClear font-normal hover:font-bold text-[18px] relative ${language === "en" ? "text-text" : "text-white"}`} onClick={()=>handleLanguage("en")}>EN</button>
+                    <button className={`${language !== "en" ? "buttonTwo" : ""} font-outfit w-full h-[50px] font-normal hover:font-bold text-[18px] relative ${language === "en" ? "text-text" : "text-white"}`} onClick={()=>handleLanguage("en")}>EN</button>
                 </div>
             </div>
         </>
