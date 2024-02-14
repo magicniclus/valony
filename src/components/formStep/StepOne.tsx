@@ -15,6 +15,7 @@ const StepOne = () => {
 
     const getFocus = useSelector((state: RootState) => state.focus.formFocus);
     const isLoading = useSelector((state: RootState) => state.loading.isLoading);
+    const language = useSelector((state: any) => state.language.language);   
     const dispatch = useDispatch();
 
     const listIndicatif = [
