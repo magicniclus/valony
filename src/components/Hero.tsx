@@ -127,7 +127,7 @@ const Hero = () => {
                             </div>
                             <ForwardLine pourcentage={0} />
                         </div>
-                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4e px-4'>
+                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4 md:pb-0 pb-28 px-4 '>
                             {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
                             <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                             <Nav />
@@ -222,7 +222,7 @@ const Hero = () => {
                             </div>
                             <ForwardLine pourcentage={0} />
                         </div>
-                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4 md:pb-0 pb-28 px-4'>
+                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 py-4 md:pb-0 pb-28 px-4 relative'>
                             {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
                             <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                             <Nav />
