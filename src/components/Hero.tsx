@@ -24,7 +24,7 @@ const Hero = () => {
     const logoRef = useRef<HTMLImageElement>(null);
 
     const { formFocus } = useSelector((state: RootState) => state.focus);
-    const language = useSelector((state: any) => state.language.language);   
+    const language = useSelector((state: any) => state.language.language);    
     const backgroundClass = formFocus ? 'background blur' : 'background';
 
     const [arrowIsHover, setArrowIsHover] = useState(false);
@@ -74,7 +74,6 @@ const Hero = () => {
 
     const fr = ()=>{
         return(
-
             <>
              <style jsx>{`
                        .backgroundImage {
@@ -170,7 +169,7 @@ const Hero = () => {
 
     const en = ()=>{
         return (
-<>
+ <>
              <style jsx>{`
                        .backgroundImage {
                     position: absolute;
@@ -209,7 +208,7 @@ const Hero = () => {
                 <section id="hero" className='min-h-[559px] w-full flex flex-col relative'>
                     <div className='flex'>
                         <div ref={refVignette} onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden'>
-                            <p onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='text-or font-extrabold text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
+                            <p onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='text-or font-extrabold text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Download the brochure</p>
                             {
                                 arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-or.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' />
                             }
@@ -217,27 +216,27 @@ const Hero = () => {
                         <div className='w-[121px] min-h-[559px] bg-white px-4 py-6 hidden lg:flex flex-col items-center justify-between'>
                             <div className='w-full'>
                                 <img ref={logoRef} src="/logos/logo.png" alt="Logo" className='w-[91px] h-auto' style={{ marginBottom: "20px" }} />
-                                <div className='flex justify-center min-w-max -translate-x-11'>
-                                    <p className='text-or text-[16px] rotate-[270deg] translate-y-20 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; une vue incroyable</p>
+                                <div className='flex justify-center min-w-max -translate-x-10'>
+                                    <p className='text-or text-[16px] rotate-[270deg] translate-y-20 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; AN INCREDIBLE VIEW</p>
                                 </div>
                             </div>
                             <ForwardLine pourcentage={0} />
                         </div>
-                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4e px-4'>
+                        <div className='w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative py-4 md:pb-0 pb-28 px-4'>
                             {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
                             <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                             <Nav />
                             <div className='flex flex-col md:ml-0 md:mt-10 md:mx-0  md:my-0 my-auto md:mb-32' ref={ref}>
-                                <h1 className='sm:text-[45px] text-4xl font-bold text-textClear leading-[60px] font-playfair' ref={refTitle}>Vous rêvez d’un<br/> pied-à-terre avec<br/> vue plein océan ?</h1>
+                                <h1 className='sm:text-[45px] text-4xl font-bold text-textClear leading-[60px] font-playfair' ref={refTitle}>Have you ever dreamt of <br/> having your own pied-à-terre <br/> overlooking the ocean?</h1>
                                 <div ref={refForm}>
                                     <Formulaire />
                                 </div>
                             </div>
                             <div className='bg-white py-3 px-6 rounded-r-full w-[450px] max-w-[80vw] md:mr-[170px] md:rounded-l-none rounded-l-full md:mx-0 mx-auto md:min-w-[500px] md:flex hidden' ref={refDecouverte}>
                                 <div className='flex justify-between h-full flex-col sm:items-start items-center'>
-                                    <p className='text-[10px] font-outfit text-or text-center uppercase'>Découvrez</p>
-                                    <h2 className='text-or text-[20px] font-outfit text-center uppercase'>Les Villas SEAVEN</h2>
-                                    <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>À Saint-Pierre d’Oléron (17)
+                                    <p className='text-[10px] font-outfit text-or text-center uppercase'>Discover</p>
+                                    <h2 className='text-or text-[20px] font-outfit text-center uppercase'>THE SEAVEN VILLAS</h2>
+                                    <h3 className='text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase'>in Saint-Pierre d’Oléron (17)
                                         {/* <ArrowDownIcon className='text-text h-[20px] translate-x-[160px] md:block hidden' /> */}
                                         <img src="/icons/arrow-black.png" alt="arrow" className='h-[20px] translate-x-[160px]' />
                                     </h3>
@@ -247,15 +246,15 @@ const Hero = () => {
                     </div>
                     <div className='bg-gray py-5 px-5 md:mx-0 mx-auto w-full flex md:hidden relative'>
                             <a onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} href="#hero" onClick={()=>dispatch(focusAction())} className='cursor-pointer absolute right-4 -top-[50px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or md:hidden flex'>
-                                <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Télécharger la plaquette</p>
+                                <p className='text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out '>Download the brochure</p>
                                {
                                  arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-or.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] mt-2 transition duration-300 ease-in-out' />
                                 }
                             </a>
                             <div className='flex justify-between h-full flex-col'>
-                                <p className='text-[10px] font-outfit text-or uppercase'>Découvrez</p>
-                                <h2 className='text-or text-[20px] font-outfit uppercase'>Les Villas SEAVEN</h2>
-                                <h3 className=' text-[18px] font-outfit sm:w-full flex justify-between items-center uppercase text-white'>À Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
+                                <p className='text-[10px] font-outfit text-or uppercase'>Discover</p>
+                                <h2 className='text-or text-[20px] font-outfit uppercase'>THE SEAVEN VILLAS</h2>
+                                <h3 className=' text-[18px] font-outfit sm:w-full flex justify-between items-center uppercase text-white'>in Saint-Pierre d’Oléron (17)<ArrowDownIcon className='text-text h-[20px] md:mr-10 md:block hidden' /></h3>
                             </div>
                         </div>
                 </section>
