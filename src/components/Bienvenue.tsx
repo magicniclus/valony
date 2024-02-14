@@ -291,12 +291,12 @@ const Bienvenue = () => {
                             <h3 className='text-[20px] font-outfit text-or mt-3 uppercase tracking-[3px] leading-[36px]'>Over 25 years’ experience</h3>
                         </div>
                         <p className='text-[17px] font-outfit font-bold md:mt-3 mt-6' ref={paraphRef}>
-                            Designing living spaces to meet various requirements, and with the utmost respect for the environment, has been Groupe Duval’s raison d'être for over 25 years. In addition to new build home warrantees, buying new offers numerous advantages: reduced notary fees, environmental performance, everyday comfort...
+                            Designing living spaces to meet various requirements, and with the utmost respect for the environment, has been Groupe Duval’s raison d&apos;être for over 25 years. In addition to new build home warrantees, buying new offers numerous advantages: reduced notary fees, environmental performance, everyday comfort...
                         </p>
                         <div className='flex flex-col text-[14px] w font-outfit md:mt-5 mt-10 lign relative md:w-[377px]' ref={listRef}>
                             <div className='flex'>
                                 <img src="/icons/bullet.png" alt="bullet" className='w-[9px] h-[9px] translate-y-1.5 mr-2' />
-                                <p className='text-text flex'>I am interested in acquiring a SEAVEN villa in Saint-Pierre d'Oléron.</p>
+                                <p className='text-text flex'>I am interested in acquiring a SEAVEN villa in Saint-Pierre d&apos;Oléron.</p>
                             </div>
                             <div className='overflow-hidden group'>
                                     <a href="#hero" className='translate-x-1 flex bg-white rounded-r-full px-7 py-2 max-w-max text-or mt-3 items-center' ref={buttonRef1}>
