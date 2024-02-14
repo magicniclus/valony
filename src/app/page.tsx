@@ -96,13 +96,22 @@ export default function Home() {
         {
           languageKey === "fr" ? 
           <BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={32} title="Jetez l’ancre sur l’île aux parfums, paradis de l’atlantique" susTitle="L’océan vous invite à embarquer sur l’Île d’Oléron. Alors commence le plus beau des voyages, le vôtre." list={["Un ensoleillement digne des rivages méditerranéens pour la lumineuse, aussi surnommée l’île aux parfums par Pierre Loti", "2 729 ha d’environnement naturel préservé (forêts, côtes rocheuses, marais, flore et espèces d’oiseaux protégés…)", "Le charme authentique de petits villages et hameaux aux ruelles  fleuries de roses trémières", "60 km de plages de sable fin"]} button="En savoir plus" src="oleron.jpg" />
-          :<BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={32} title="Jetez l’ancre sur l’île aux parfums, paradis de l’atlantique en" susTitle="L’océan vous invite à embarquer sur l’Île d’Oléron. Alors commence le plus beau des voyages, le vôtre." list={["Un ensoleillement digne des rivages méditerranéens pour la lumineuse, aussi surnommée l’île aux parfums par Pierre Loti", "2 729 ha d’environnement naturel préservé (forêts, côtes rocheuses, marais, flore et espèces d’oiseaux protégés…)", "Le charme authentique de petits villages et hameaux aux ruelles  fleuries de roses trémières", "60 km de plages de sable fin"]} button="En savoir plus" src="oleron.jpg" />
+          :<BluePresentation 
+            navTitle="OLÉRON THE ISLAND OF SCENTS" 
+            navTransform="-translate-x-[83px]"
+            navPourcentage={32} 
+            title="Anchor down on the island of scents – complete paradise in the Atlantic" 
+            susTitle="The ocean invites you to discover Oléron Island – and your amazing journey starts right here…" 
+            list={["Sunshine worthy of the Mediterranean shores for this “Island of light”, also nicknamed the “Island of Scents” by Pierre Loti", "2,729 hectares area of protected natural beauty (forests, rocky coasts, marshes, flora, and protected bird species...)", "The authentic charm of small villages and hamlets with alleyways lined with blooming hollyhocks", "60 km of fine sandy beaches"]} 
+            button="Learn more" 
+            src="oleron.jpg" 
+          />
         }
         <BackgroundPresentation />
         {
           languageKey === "fr" ? 
           <BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={64} title="Grands volumes baignés de lumière et prestations à la carte" susTitle="« Un environnement de vie exceptionnel qui respire l’élégance et le confort. »" sitation='Cyril Guilmeau, architecte' list={["Jusqu’à 156 m2 habitables pour des villas de 5 à 6 pièces", "Grandes terrasses avec vue imprenable sur l’océan", "Vaste salon / séjour baigné de lumière naturelle", "2 à 3 stationnements et 1 local à vélos sécurisés par maison", "Magnifiques suites parentales dotées d’un grand dressing", "etc..."]} button="Découvrir toutes les prestations" src="interieur.jpg" />
-          :<BluePresentation navTitle="Oléron, l’île aux parfums" navPourcentage={64} title="Grands volumes baignés de lumière et prestations à la carte en" susTitle="« Un environnement de vie exceptionnel qui respire l’élégance et le confort. »" sitation='Cyril Guilmeau, architecte' list={["Jusqu’à 156 m2 habitables pour des villas de 5 à 6 pièces", "Grandes terrasses avec vue imprenable sur l’océan", "Vaste salon / séjour baigné de lumière naturelle", "2 à 3 stationnements et 1 local à vélos sécurisés par maison", "Magnifiques suites parentales dotées d’un grand dressing", "etc..."]} button="Découvrir toutes les prestations" src="interieur.jpg" />
+          :<BluePresentation navTitle="OLERON, THE ISLAND OF FRAGRANCES" navTransform="-translate-x-[114px]" navPourcentage={64} title="Large volumes bathed in light and à la carte services" susTitle="« A DESIGN THAT MEETS YOUR REQUIREMENTS»" sitation='Cyril Guilmeau, architecte' list={["Up to 156 m2 of living space for villas with 5 to 6 rooms", "Large terraces with breathtaking ocean views", "Spacious living/dining room bathed in natural sunlight", "2 to 3 parking spaces and 1 secure bicycle storage per house", "Magnificent master suites with large dressing rooms", "etc..."]} button="Discover all the features" src="interieur.jpg" />
         }
         <Bienvenue />
       </main>
