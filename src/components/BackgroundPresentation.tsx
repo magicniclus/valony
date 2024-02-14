@@ -108,7 +108,7 @@ const BackgroundPresentation = () => {
                     <div className='w-full'>
                         <div className='w-full'>
                                 <div className='flex justify-center min-w-max -translate-x-[112px]'>
-                                    <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; accès PRIVILÉGIÉ aux TRÉSORS DE L’ÎLE</p>
+                                    <p className='text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit font-bold' style={{ width: "max-content" }}>&rsaquo; VIP ACCESS TO THE ISLAND'S TREASURES</p>
                                 </div>
                             </div>
                     </div>
@@ -116,31 +116,32 @@ const BackgroundPresentation = () => {
                 </div>
                 <div className='w-full flex md:flex-row flex-col'>
                     <div className='md:w-[50%] w-full overflow-hidden flex justify-between bg-beige flex-col md:px-20 px-4 py-16'>
-                        <h2 className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[50px]'>
-                            Votre nouveau port d’attache à 
-                            à La Cotinière en
+                        <h2 ref={titleRef} className='sm:text-[45px] text-4xl font-bold text-blueClear leading-[60px] font-playfair'>
+                            Your new local port: La Cotinière
                         </h2>
-                        <h3 className='font-outfit text-[17px] font-bold mt-3'>
-                            Avec la plage de Saint-Pierre d’Oléron, La Cotinière est l’endroit où il fait bon se balader et se prélasser. Au milieu des cabanes de pêcheurs, on prend le temps, on fait ses achats et on s’installe en terrasse bercé par le rythme de l’océan… 
+                        <h3 ref={susTitleRef} className='font-outfit text-[17px] font-bold mt-3'>
+                            With the Saint-Pierre d'Oléron beach, La Cotinière is the perfect place for wandering and lounging. Amidst the fishermen's huts, you can take your time, do some shopping, and relax on a terrace and be rocked by the rhythm of the ocean...
                         </h3>
-                        <ul className='text-[14px] font-outfit text-text mt-3'>
+                        <ul ref={listRef} className='text-[14px] font-outfit text-text mt-3'>
                             <li className='flex items-center'>
                                 <span className='mr-2'>-</span>
-                                Emplacement privilégié et intimité préservée
+                                VIP location and absolute intimacy
                             </li>
                             <li className='flex items-center mt-2'>
                                 <span className='mr-2'>-</span>
-                                Accès direct à la plage, au plus près des trésors naturels de l’île 
+                                Direct access to the beach, close to the Island's natural treasures 
                             </li>
                             <li className='flex items-center mt-2'>
                                 <span className='mr-2'>-</span>
-                                À 400 mètres du 1er port de pêche artisanale de Charente-Maritime 
+                                400 metres from the 1st artisanal fishing port of Charente-Maritime
                             </li>
                         </ul>
-                        <div className='w-full flex justify-end mt-3'>
-                            <a href="#hero" className='bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 uppercase hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
-                                Connaitre l’adresse exacte
-                                <ArrowRightIcon className='text-blueClear w-6 h-6 ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' />
+                        <div ref={buttonRef} className='w-full flex justify-end mt-3'>
+                            <a onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} href="#hero" className='bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out'>
+                                Know the exact address
+                                {
+                                arrowIsHover ? <img src="/icons/arrow-white.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] ml-2 transition duration-300 ease-in-out' /> : <img src="/icons/arrow-blue.png" alt="arrow" onMouseEnter={()=>setArrowIsHover(true)} onMouseOut={()=>{setArrowIsHover(false)}} className='h-[10px] ml-2 transition duration-300 ease-in-out' />
+                                }
                                 {/* <img src="/icons/arrow-blue.png" alt="arrow-right" className='w-4 h-auto ml-2 group-hover:text-white group-hover:translate-x-1 transition duration-300 ease-in-out' /> */}
                             </a>
                         </div>
