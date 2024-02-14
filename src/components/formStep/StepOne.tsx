@@ -269,7 +269,7 @@ const StepOne = () => {
                                     step === 3 ? 'Vos coordonnées téléphoniques' : ''
                                     ) : ''}
                                 </span></p>
-                            <p className={`text-[18px] flex-col font-outfit uppercase items-end absolute top-0 left-0 transition duration-300 ease-in-out lg:flex hidden ${getFocus ? "lg:-translate-x-[calc(100%+15px)] " : ""} ${step < 4 ? " " : "hidden" }`}>{title}<span className='text-textClear text-[10px]'>
+                            <p className={`lg:text-[16px] text-[16px] flex-col font-outfit uppercase items-end absolute top-0 left-0 transition duration-300 ease-in-out lg:flex hidden ${getFocus ? "lg:-translate-x-[calc(100%+15px)] " : ""} ${step < 4 ? " " : "hidden" }`}>{title}<span className='text-textClear text-[10px]'>
                                 { getFocus ? (
                                     step === 1 ? 'Saisissez votre nom' : 
                                     step === 2 ? 'Saisissez votre adresse électronique' : 
@@ -350,7 +350,7 @@ const StepOne = () => {
                                         <input type="checkbox" className="mt-3" onChange={(e)=>setCheckbox(e.target.checked)} />
                                         <label className='ml-3'>J’ai lu et accepte la politique de confidentialité de ce site.*</label>
                                     </div>
-                                    <div className='w-full flex justify-end'>
+                                    <div className='w-full flex md:justify-end'>
                                         <button type="button" className="bg-or text-white text-[20px] font-outfit py-3 w-full max-w-[129px] mt-5 rounded-full" disabled={isButtonDisabledTwo} onClick={handleSubmite} id={step === 4 ? "conversion" : ""}>Envoyer</button>
                                     </div>
                                 </div>
