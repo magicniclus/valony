@@ -227,7 +227,9 @@ const Hero = () => {
                             <div className={`backgroundImage transition duration-300 ease-in-out ${formFocus ? 'blurEffect' : ''}`}></div>
                             <Nav />
                             <div className='flex flex-col md:ml-0 md:mt-10 md:mx-0  md:my-0 my-auto md:mb-32' ref={ref}>
-                                <h1 className='sm:text-[45px] text-4xl font-bold text-textClear leading-[60px] font-playfair' ref={refTitle}>Have you ever dreamt of <br/> having your own pied-à-terre <br/> overlooking the ocean?</h1>
+                                <div>
+                                    <h1 className='sm:text-[45px] text-4xl font-bold text-textClear leading-[60px] font-playfair max-w-[500px]' ref={refTitle}>Have you ever dreamt of having your own pied-à-terre overlooking the ocean?</h1>
+                                </div>
                                 <div ref={refForm}>
                                     <Formulaire />
                                 </div>
