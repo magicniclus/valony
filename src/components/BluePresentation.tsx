@@ -93,7 +93,7 @@ const BluePresentation : React.FC<BluePresentationProps> = ({ navTitle, navPourc
                     <ul className='text-[14px] font-outfit text-text mt-3' ref={listRef}>
                         {
                             list.map((item, index) => (
-                                <li key={index} className='flex items-center mt-2'>
+                                <li key={index} className='flex items-start mt-2'>
                                     <span className='mr-2'>-</span>
                                     {item}
                                 </li>
