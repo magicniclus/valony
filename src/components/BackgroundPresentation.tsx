@@ -119,15 +119,15 @@ const BackgroundPresentation = () => {
                             With the Saint-Pierre d&apos;Oléron beach, La Cotinière is the perfect place for wandering and lounging. Amidst the fishermen&apos;s huts, you can take your time, do some shopping, and relax on a terrace and be rocked by the rhythm of the ocean...
                         </h3>
                         <ul ref={listRef} className='text-[14px] font-outfit text-text mt-3'>
-                            <li className='flex items-center'>
+                            <li className='flex items-start'>
                                 <span className='mr-2'>-</span>
                                 VIP location and absolute intimacy
                             </li>
-                            <li className='flex items-center mt-2'>
+                            <li className='flex items-start mt-2'>
                                 <span className='mr-2'>-</span>
                                 Direct access to the beach, close to the Island&apos;s natural treasures 
                             </li>
-                            <li className='flex items-center mt-2'>
+                            <li className='flex items-start mt-2'>
                                 <span className='mr-2'>-</span>
                                 400 metres from the 1st artisanal fishing port of Charente-Maritime
                             </li>
