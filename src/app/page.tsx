@@ -2,8 +2,6 @@
 
 import React, { useEffect } from "react";
 
-import { useRouter } from 'next/navigation';
-
 import { RootState } from "@/redux/store";
 import { stopLoading } from "@/redux/loadingSlice";
 
