@@ -2,16 +2,18 @@
 
 import React, {useEffect, useState} from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { startLoading, stopLoading} from '@/redux/loadingSlice';
 import { stopFocus, focus as focusAction } from '@/redux/formFocusSlice';
 
-import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
-
 import { addProspect } from '@/firebase/dataManager';
 
 const StepOne = () => {
+
+    const router = useRouter();
 
     const getFocus = useSelector((state: RootState) => state.focus.formFocus);
     const isLoading = useSelector((state: RootState) => state.loading.isLoading);
@@ -177,7 +179,8 @@ const StepOne = () => {
                 setCheckbox(false);
                 setIsButtonDisabled(true);
                 setIsButtonDisabledTwo(true);
-                window.location.href = '/merci';
+                // window.location.href = '/merci';
+                router.push('/merci');
                 dispatch(stopLoading())
               });
             }
