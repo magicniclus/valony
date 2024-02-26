@@ -26,12 +26,13 @@ const Loader = () => {
       });
   }, []);
   return (
-    <div className="h-screen w-screen bg-white animate-pulse duration-100 flex justify-center items-center">
+    <div className="h-screen w-screen bg-white animate-pulse duration-100 flex flex-col justify-center items-center">
       <img
         className="h-[136px] w-auto"
         src="/logos/logo.png"
         alt="logo duval"
       />
+      <h2 className="mt-3">Site en construction</h2>
     </div>
   );
 };
