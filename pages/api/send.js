@@ -1,6 +1,6 @@
-import { EmailTemplate } from "../../src/components/EmailTemplate";
-import ReactDOMServer from "react-dom/server"; // Assurez-vous d'avoir react-dom installé
 import sgMail from "@sendgrid/mail";
+import ReactDOMServer from "react-dom/server"; // Assurez-vous d'avoir react-dom installé
+import { EmailTemplate } from "../../src/components/EmailTemplate";
 
 // Configurez SendGrid avec votre clé API
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -21,7 +21,8 @@ export default async (req, res) => {
     );
 
     const msg = {
-      to: ["atlantique@groupeduval.com"], // Assurez-vous que cette adresse est valide
+      // to: ["atlantique@groupeduval.com"], // Assurez-vous que cette adresse est valide
+      to: ["nancy.martin@hotmail.fr"],
       from: "nouveaucontact@prospect-manager.fr",
       subject: "Nouvelle demande reçue depuis votre site web !",
       html: emailContent,
