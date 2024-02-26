@@ -36,39 +36,39 @@ export default function Home() {
   ) as LanguageKey;
 
   // Pré-upload des images
-  useEffect(() => {
-    // URLs des images à charger
-    const imageSources = [
-      "/background/hero.png",
-      "/icons/facebook.png",
-      "/icons/instagram.png",
-      "/icons/x.png",
-      "/icons/linkdin.png",
-      "/icons/pomme.png",
-      "/icons/wifi.png",
-      "/icons/bullet.png",
-      "/images/agilite.jpg",
-      "/images/creativite.jpg",
-      "/images/exigence.jpg",
-      "/images/exterieur.jpg",
-      "/images/interieur.jpg",
-      "/images/jardin.jpg",
-      "/images/logo-white.png",
-      "/images/oleron.jpg",
-      "/images/terrasse.jpg",
-      "/images/vignette.png",
-      "/images/vue-ocean.png",
-    ];
+  // useEffect(() => {
+  //   // URLs des images à charger
+  //   const imageSources = [
+  //     "/background/hero.png",
+  //     "/icons/facebook.png",
+  //     "/icons/instagram.png",
+  //     "/icons/x.png",
+  //     "/icons/linkdin.png",
+  //     "/icons/pomme.png",
+  //     "/icons/wifi.png",
+  //     "/icons/bullet.png",
+  //     "/images/agilite.jpg",
+  //     "/images/creativite.jpg",
+  //     "/images/exigence.jpg",
+  //     "/images/exterieur.jpg",
+  //     "/images/interieur.jpg",
+  //     "/images/jardin.jpg",
+  //     "/images/logo-white.png",
+  //     "/images/oleron.jpg",
+  //     "/images/terrasse.jpg",
+  //     "/images/vignette.png",
+  //     "/images/vue-ocean.png",
+  //   ];
 
-    // Précharger toutes les images et mettre à jour l'état une fois chargées
-    Promise.all(imageSources.map((src) => preloadImage(src)))
-      .then(() => {
-        dispatch(stopLoading());
-      })
-      .catch((error) => {
-        console.error("Erreur lors du chargement des images", error);
-      });
-  }, []);
+  //   // Précharger toutes les images et mettre à jour l'état une fois chargées
+  //   Promise.all(imageSources.map((src) => preloadImage(src)))
+  //     .then(() => {
+  //       dispatch(stopLoading());
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erreur lors du chargement des images", error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     // Création d'un objet URL à partir de l'URL actuelle du navigateur
