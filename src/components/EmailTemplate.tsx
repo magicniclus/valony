@@ -11,7 +11,8 @@ interface EmailTemplateProps {
   date: string;
 }
 
-const currentDate = format(new Date(), "dd/MM/yyyy", { locale: fr });
+// Ajout du formatage pour inclure l'heure
+const currentDate = format(new Date(), "dd/MM/yyyy HH:mm", { locale: fr });
 
 export const EmailTemplate: React.FC<EmailTemplateProps> = ({
   nom,
