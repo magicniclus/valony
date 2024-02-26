@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useEffect} from 'react';
+import { useEffect } from "react";
 
 const preloadImage = (src: string): Promise<void> => {
   return new Promise((resolve, reject) => {
@@ -12,28 +12,28 @@ const preloadImage = (src: string): Promise<void> => {
 };
 
 const Loader = () => {
-    
-    useEffect(() => {
+  useEffect(() => {
     // URLs des images à charger
-    const imageSources = [
-      '/logos/logo.png',
-    ];
+    const imageSources = ["/logos/logo.png"];
 
     // Précharger toutes les images et mettre à jour l'état une fois chargées
-    Promise.all(imageSources.map(src => preloadImage(src)))
+    Promise.all(imageSources.map((src) => preloadImage(src)))
       .then(() => {
         // Toutes les images sont chargées
-        
       })
       .catch((error) => {
         console.error("Erreur lors du chargement des images", error);
       });
   }, []);
-    return (
-        <div className='h-screen w-screen bg-white animate-pulse duration-100 flex justify-center items-center'>
-            <img className='h-[136px] w-auto' src="/logos/logo.png" alt="logo duval" />
-        </div>
-    );
+  return (
+    <div className="h-screen w-screen bg-white animate-pulse duration-100 flex justify-center items-center">
+      <img
+        className="h-[136px] w-auto"
+        src="/logos/logo.png"
+        alt="logo duval"
+      />
+    </div>
+  );
 };
 
 export default Loader;
