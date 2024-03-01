@@ -32,7 +32,7 @@ const Loader = () => {
         src="/logos/logo.png"
         alt="logo duval"
       />
-      <h2 className="mt-3">Site en construction</h2>
+      {/* <h2 className="mt-3">Site en construction</h2> */}
     </div>
   );
 };
