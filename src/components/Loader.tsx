@@ -30,7 +30,7 @@ const Loader = () => {
       <img
         className="h-[136px] w-auto"
         src="/logos/logo.png"
-        alt="logo duval"
+        alt="logo groupe duval"
       />
       {/* <h2 className="mt-3">Site en construction</h2> */}
     </div>
