@@ -21,8 +21,8 @@ export default async (req, res) => {
     );
 
     const msg = {
-      // to: ["atlantique@groupeduval.com"], // Assurez-vous que cette adresse est valide
-      to: ["nancy.martin@hotmail.fr"],
+      to: ["atlantique@groupeduval.com"], // Assurez-vous que cette adresse est valide
+      // to: ["nancy.martin@hotmail.fr"],
       from: "nouveaucontact@prospect-manager.fr",
       subject: "Nouvelle demande reçue depuis seaven-groupeduval.com !",
       html: emailContent,
