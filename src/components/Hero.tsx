@@ -131,12 +131,12 @@ const Hero = () => {
               ref={refVignette2}
             >
               <p
-                className="text-white font-light text-center font-outfit text-[13px] uppercase"
+                className="text-white font-light text-center font-outfit text-[13px] uppercase -translate-y-2"
                 onClick={downloadPlaquette}
               >
                 LIVRAISON
               </p>
-              <p className=" font-playfair text-[35px] text-white leading-3">
+              <p className=" font-playfair text-[35px] text-white leading-3 -translate-y-2">
                 2025
               </p>
             </div>
