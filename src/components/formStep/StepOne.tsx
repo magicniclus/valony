@@ -249,7 +249,10 @@ const StepOne = () => {
           border-bottom: 1px solid #1c1c1c;
         }
         .backgroudTelOneBorder {
-          border-bottom: 1px solid #1c1c1c;
+          border-bottom: 1px solid #ffffff;
+        }
+        ::placeholder {
+          color: #000000 !important;
         }
         @media (max-width: 768px) {
           .backgroundThree:after {
@@ -266,7 +269,7 @@ const StepOne = () => {
         .finalPContainer {
         }
         .finalp {
-          border-bottom: 1px solid #1c1c1c;
+          border-bottom: 1px solid #ffffff;
         }
       `}</style>
       <div className="font-outfit">
@@ -311,17 +314,6 @@ const StepOne = () => {
                 } ${step < 4 ? " " : "hidden"}`}
               >
                 {title}
-                {/* <span className="text-white text-[10px]">
-                  {getFocus
-                    ? step === 1
-                      ? "Saisissez votre nom"
-                      : step === 2
-                      ? "Saisissez votre adresse électronique"
-                      : step === 3
-                      ? "Saisissez vos coordonnées téléphoniques"
-                      : ""
-                    : ""}
-                </span> */}
               </p>
             </div>
             <div className="flex">
@@ -331,7 +323,7 @@ const StepOne = () => {
                     type={step === 2 ? "email" : "text"}
                     value={valueDisplay}
                     onChange={handleInputChange}
-                    className="backgroundFour bg-transparent w-[95%] md:w-[450px] relative pb-3 placeholder:text-red-500 text-[14px] md:block hidden"
+                    className="backgroundFour bg-transparent w-[95%] md:w-[450px] relative pb-3 text-[14px] md:block hidden"
                     placeholder={
                       getFocus
                         ? step === 1
@@ -346,7 +338,7 @@ const StepOne = () => {
                     type={step === 2 ? "email" : "text"}
                     value={valueDisplay}
                     onChange={handleInputChange}
-                    className="backgroundFour bg-transparent w-[95%] md:w-[450px] relative pb-3 placeholder:text-red-500 text-[14px] md:hidden block"
+                    className="backgroundFour bg-transparent w-[95%] md:w-[450px] relative pb-3 text-[14px] md:hidden block"
                     placeholder={
                       getFocus
                         ? step === 1
@@ -369,9 +361,9 @@ const StepOne = () => {
                     onChange={handleSelectChange}
                     className={`backgroundTelOne ${
                       getFocus && "backgroudTelOneBorder"
-                    } bg-transparent w-[25%] relative pb-3 text-[14px] text-white`}
+                    } bg-transparent w-[25%] relative pb-3 text-[14px] text-[#000000]`}
                   >
-                    <option value="" disabled>
+                    <option value="" className="" disabled>
                       {getFocus ? "Indicatif pays" : ""}
                     </option>
                     {listIndicatif.map((indicatif, index) => (
@@ -384,7 +376,7 @@ const StepOne = () => {
                     type={"text"}
                     value={valueDisplay}
                     onChange={handleInputChange}
-                    className={`backgroundTelOne bg-transparent w-[67%] relative pb-3 placeholder:text-white text-[14px] text-white ${
+                    className={`backgroundTelOne bg-transparent w-[67%] relative pb-3 text-[14px] text-white ${
                       getFocus && "backgroudTelOneBorder"
                     }`}
                     placeholder={getFocus ? "06 XX XX XX XX" : ""}
