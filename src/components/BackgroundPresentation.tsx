@@ -85,7 +85,7 @@ const BackgroundPresentation = () => {
             </h2>
             <h3
               ref={susTitleRef}
-              className="font-outfit text-[17px] font-bold mt-3"
+              className="font-outfit text-[17px] font-bold mt-3 text-[#312F39]"
             >
               La résidence VALONY, située à l’entrée nord de Poitiers, répond à
               plusieurs types de demandes : logements étudiants, résidence
