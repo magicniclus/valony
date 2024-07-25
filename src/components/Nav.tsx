@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setLanguage } from "@/redux/languageSlice";
-
 import { gsap } from "gsap";
 
 const Nav = () => {
@@ -60,36 +59,14 @@ const Nav = () => {
           opacity: 1; /* Devient visible au survol */
         }
       `}</style>
-      <div className="w-full bg-transparent flex justify-between md:justify-end py-1 md:px-4 px-2">
+      <div className="bg-transparent absolute top-4 left-1/2 transform -translate-x-1/2">
         <img
           ref={logoRef}
           src="/logos/logo.png"
           alt="Logo"
-          className="w-[80px] h-auto md:hidden block"
+          className="w-[100px] h-auto md:hidden block"
           style={{ marginBottom: "20px" }}
         />
-        <div className="flex text-[18px]" ref={refLanguage}>
-          <button
-            className={`${
-              language !== "fr" ? "buttonOne" : ""
-            } font-outfit w-full h-[50px] font-normal hover:font-bold text-[18px] mr-4 relative ${
-              language === "fr" ? "text-text" : "text-white"
-            }`}
-            onClick={() => handleLanguage("fr")}
-          >
-            FR
-          </button>
-          <button
-            className={`${
-              language !== "en" ? "buttonTwo" : ""
-            } font-outfit w-full h-[50px] font-normal hover:font-bold text-[18px] relative ${
-              language === "en" ? "text-text" : "text-white"
-            }`}
-            onClick={() => handleLanguage("en")}
-          >
-            EN
-          </button>
-        </div>
       </div>
     </>
   );
