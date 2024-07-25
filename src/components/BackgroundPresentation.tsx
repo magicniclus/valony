@@ -63,12 +63,12 @@ const BackgroundPresentation = () => {
         <div className="w-[121px] min-h-[625px] px-4 py-6 hidden lg:flex flex-col items-center justify-between">
           <div className="w-full">
             <div className="w-full">
-              <div className="flex justify-center min-w-max -translate-x-[112px]">
+              <div className="flex justify-center min-w-max -translate-x-[80px]">
                 <p
                   className="text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit font-bold"
                   style={{ width: "max-content" }}
                 >
-                  &rsaquo; accès PRIVILÉGIÉ aux TRÉSORS DE L’ÎLE
+                  &rsaquo; une adresse stratégique
                 </p>
               </div>
             </div>
@@ -92,7 +92,7 @@ const BackgroundPresentation = () => {
               principale, tourisme d’affaires ou de loisirs, location courte ou
               longue durée…
             </h3>
-            <ul
+            {/* <ul
               ref={listRef}
               className="text-[14px] font-outfit text-text mt-3"
             >
@@ -109,7 +109,36 @@ const BackgroundPresentation = () => {
                 <span className="mr-2">-</span>À 400 mètres du 1er port de pêche
                 artisanale de Charente-Maritime
               </li>
-            </ul>
+            </ul> */}
+            <div className="w-full flex justify-between mt-5 flex-col md:flex-row">
+              <div className="flex w-full md:w-1/2 items-start">
+                <img
+                  src="/icons/human.png"
+                  alt="human"
+                  className="w-6 h-auto mr-2 object-contain"
+                />
+                <div className="text-xs ml-2">
+                  <p>À 10 min. à pied d’un pôle d’activités regroupant :</p>
+                  <p className="mt-2">_Entreprises</p>
+                  <p className="mt-2">_Restaurants et services</p>
+                  <p className="mt-2">_ Écoles d’études supérieures</p>
+                </div>
+              </div>
+              <div className="flex w-full md:w-1/2 items-start mt-3 md:mt-0">
+                <img
+                  src="/icons/car.png"
+                  alt="human"
+                  className="w-6 h-auto mr-2 object-contain"
+                />
+                <div className="text-xs ml-2">
+                  <p>Et en voiture, à :</p>
+                  <p className="mt-2">_ 8 min. de l’aéroport</p>
+                  <p className="mt-2">_ 10 min. de la Gare SNCF</p>
+                  <p className="mt-2">_ 10 min. du Futuroscope</p>
+                  <p className="mt-2">_ 15 min. de l’hypercentre-ville</p>
+                </div>
+              </div>
+            </div>
             <div ref={buttonRef} className="w-full flex justify-center mt-3">
               <a
                 onMouseEnter={() => setArrowIsHover(true)}
@@ -117,7 +146,7 @@ const BackgroundPresentation = () => {
                   setArrowIsHover(false);
                 }}
                 href="#hero"
-                className="bg-white group  text-[14px] md:text-[20px] font-outfit text-blueClear py-2 px-4 rounded-full mt-4 hover:bg-blueClear hover:text-white flex items-center transition duration-300 ease-in-out"
+                className="bg-white group  text-[14px] md:text-[20px] font-outfit text-[#256068] py-2 px-4 rounded-full mt-4 hover:bg-[#256068] hover:text-white flex items-center transition duration-300 ease-in-out"
               >
                 Connaitre l&apos;adresse exacte
                 {arrowIsHover ? (
