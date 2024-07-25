@@ -23,7 +23,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
 }) => {
   return (
     <div>
-      <h2>Nouveau Prospect depuis seaven-groupeduval.com:</h2>
+      <h2>Nouveau Prospect depuis Valony:</h2>
       <p>Date: {currentDate}</p>
       <h3>{date}</h3>
       <ul>
