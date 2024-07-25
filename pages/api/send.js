@@ -24,7 +24,7 @@ export default async (req, res) => {
       to: ["atlantique@groupeduval.com"], // Assurez-vous que cette adresse est valide
       // to: ["nancy.martin@hotmail.fr"],
       from: "nouveaucontact@prospect-manager.fr",
-      subject: "Nouvelle demande reçue depuis seaven-groupeduval.com !",
+      subject: "Nouvelle demande reçue pour le programme Valony !",
       html: emailContent,
     };
 
