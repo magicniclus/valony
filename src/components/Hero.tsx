@@ -251,12 +251,12 @@ const Hero = () => {
           <div className="bg-gray py-5 px-5 md:mx-0 mx-auto w-full flex md:hidden relative">
             <div className="absolute right-32 -top-[70px] p-2 h-[100px] w-[100px] rounded-full border-2 border-[#312F39] bg-[#312F39] justify-center items-center flex-col z-30 md:hidden flex">
               <p
-                className="text-white font-light text-center font-outfit text-[13px] uppercase"
+                className="text-white font-light text-center font-outfit text-[13px] uppercase -translate-y-3"
                 onClick={downloadPlaquette}
               >
                 LIVRAISON
               </p>
-              <p className=" font-playfair text-[35px] text-white leading-3">
+              <p className=" font-playfair text-[35px] text-white leading-3 -translate-y-3">
                 2025
               </p>
             </div>
