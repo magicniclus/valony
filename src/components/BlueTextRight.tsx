@@ -130,7 +130,10 @@ const BlueTextRight: React.FC<BluePresentationProps> = ({
               <span className="font-bold">remise des clés en 2025.</span>
             </p>
           </div>
-          <div className="w-full bg-blueClear flex items-center text-center text-white text-[20px] py-2 flex-col mt-5">
+          <div
+            className="w-full bg-blueClear flex items-center text-center text-white text-[20px] py-2 flex-col mt-5"
+            ref={listRef}
+          >
             <h3>Frais de notaire OFFERTS**</h3>
             <p className="text-xs max-w-[60%] mt-3">
               ** Offre valable pour les 14 prochains contrats de réservation
