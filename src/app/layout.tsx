@@ -2,18 +2,17 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import { GoogleTagManager } from '@next/third-parties/google'
- 
+import { GoogleTagManager } from "@next/third-parties/google";
 
 import { StoreProvider } from "../redux/StoreProvider";
-import Script from 'next/script';
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Seaven, Votre Nouveau Programme de Prestige avec Vue sur Mer à l'Île d'Oléron | Groupe Duval",
-  description: "Découvrez Seaven, le nouveau programme immobilier de prestige sur l'île d'Oléron offrant une vue exceptionnelle sur la mer. Contactez-nous dès aujourd'hui pour découvrir notre plaquette et en savoir plus sur ce projet unique.",
+  title:
+    "Seaven, Votre Nouveau Programme de Prestige avec Vue sur Mer à l'Île d'Oléron | Groupe Duval",
+  description:
+    "Découvrez Seaven, le nouveau programme immobilier de prestige sur l'île d'Oléron offrant une vue exceptionnelle sur la mer. Contactez-nous dès aujourd'hui pour découvrir notre plaquette et en savoir plus sur ce projet unique.",
 };
 
 export default function RootLayout({
@@ -27,10 +26,8 @@ export default function RootLayout({
         <head>
           <link rel="icon" href="logos/favicon.png" sizes="any" />
         </head>
-        <body className={inter.className}>
-          {children}
-        </body>
-        <GoogleTagManager gtmId="GTM-WZP4H2GF" /> 
+        <body className={inter.className}>{children}</body>
+        <GoogleTagManager gtmId="GTM-WZP4H2GF" />
       </html>
     </StoreProvider>
   );
