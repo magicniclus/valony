@@ -111,19 +111,6 @@ const LightBox = () => {
     );
   };
 
-  const en = () => {
-    return (
-      <div className="flex justify-center min-w-max -translate-x-36">
-        <p
-          className="text-white text-[16px] rotate-[270deg] translate-y-44 uppercase font-outfit"
-          style={{ width: "max-content" }}
-        >
-          &rsaquo; IMMERSE YOURSELF IN SEAVEN’S ATMOSPHERE
-        </p>
-      </div>
-    );
-  };
-
   return (
     <>
       <style jsx>{`
@@ -142,7 +129,7 @@ const LightBox = () => {
         <div className="w-[121px] min-h-[612px] bg-gray px-4 py-10 hidden lg:flex flex-col items-center justify-between">
           <div className="w-full">
             {/*  */}
-            {language === "fr" ? fr() : en()}
+            {fr()}
           </div>
           <ForwardLine pourcentage={16} color="white" />
         </div>
