@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -92,25 +93,10 @@ const BackgroundPresentation = () => {
               principale, tourisme d’affaires ou de loisirs, location courte ou
               longue durée…
             </h3>
-            {/* <ul
+            <div
+              className="w-full flex justify-between mt-5 flex-col md:flex-row"
               ref={listRef}
-              className="text-[14px] font-outfit text-text mt-3"
             >
-              <li className="flex items-center">
-                <span className="mr-2">-</span>
-                Emplacement privilégié et intimité préservée
-              </li>
-              <li className="flex items-center mt-2">
-                <span className="mr-2">-</span>
-                Accès direct à la plage, au plus près des trésors naturels de
-                l&apos;île
-              </li>
-              <li className="flex items-center mt-2">
-                <span className="mr-2">-</span>À 400 mètres du 1er port de pêche
-                artisanale de Charente-Maritime
-              </li>
-            </ul> */}
-            <div className="w-full flex justify-between mt-5 flex-col md:flex-row">
               <div className="flex w-full md:w-1/2 items-start">
                 <img
                   src="/icons/human.png"
