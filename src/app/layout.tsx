@@ -9,10 +9,9 @@ import { StoreProvider } from "../redux/StoreProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title:
-    "Seaven, Votre Nouveau Programme de Prestige avec Vue sur Mer à l'Île d'Oléron | Groupe Duval",
+  title: "Valony, Votre Nouveau Programme à Poitiers | Groupe Duval",
   description:
-    "Découvrez Seaven, le nouveau programme immobilier de prestige sur l'île d'Oléron offrant une vue exceptionnelle sur la mer. Contactez-nous dès aujourd'hui pour découvrir notre plaquette et en savoir plus sur ce projet unique.",
+    "Découvrez Valony, le nouveau programme immobilier de prestige sur Poitiers. Contactez-nous dès aujourd'hui pour découvrir notre plaquette et en savoir plus sur ce projet unique.",
 };
 
 export default function RootLayout({
