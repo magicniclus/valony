@@ -122,7 +122,8 @@ const Footer = () => {
             professionnelle, colocation étudiants…Les conditions réelles
             d’investissement et la rentabilité peuvent varier en fonction du
             type de location retenu et des situations propres à chaque
-            investisseur.{" "}
+            investisseur. Conditions détaillées et étude personnalisée
+            disponibles auprès de nos conseillers commerciaux.{" "}
           </p>
         </footer>
       </>
