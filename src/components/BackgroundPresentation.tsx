@@ -105,8 +105,8 @@ const BackgroundPresentation = () => {
                 />
                 <div className="text-xs ml-2">
                   <p>À 10 min. à pied d’un pôle d’activités regroupant :</p>
-                  <p className="mt-2">_Entreprises</p>
-                  <p className="mt-2">_Restaurants et services</p>
+                  <p className="mt-2">_ Entreprises</p>
+                  <p className="mt-2">_ Restaurants et services</p>
                   <p className="mt-2">_ Écoles d’études supérieures</p>
                 </div>
               </div>
