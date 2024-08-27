@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import { GoogleTagManager } from "@next/third-parties/google";
-
 import { StoreProvider } from "../redux/StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,9 +22,22 @@ export default function RootLayout({
       <html lang="fr">
         <head>
           <link rel="icon" href="logos/favicon.png" sizes="any" />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=AW-16683815620"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'AW-16683815620');
+              `,
+            }}
+          />
         </head>
         <body className={inter.className}>{children}</body>
-        <GoogleTagManager gtmId="GTM-WZP4H2GF" />
       </html>
     </StoreProvider>
   );
