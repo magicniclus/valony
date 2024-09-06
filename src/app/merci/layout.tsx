@@ -1,7 +1,7 @@
+import "@/app/globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 
 import { StoreProvider } from "@/redux/StoreProvider";
 
