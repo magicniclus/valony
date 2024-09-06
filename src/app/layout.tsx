@@ -23,6 +23,18 @@ export default function RootLayout({
       <html lang="fr">
         <head>
           <link rel="icon" href="logos/favicon.png" sizes="any" />
+          {/* Google tag (gtag.js) */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=AW-16693136684"
+          ></script>
+          <script>
+            {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-16693136684');`}
+          </script>
         </head>
         <body className={inter.className}>
           {children}
