@@ -1,85 +1,120 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef, useState } from "react";
-
-import Formulaire from "./Formulaire";
-import Nav from "./Nav";
-
-import { focus as focusAction, stopFocus } from "@/redux/formFocusSlice";
+import { addProspect } from "@/firebase/dataManager";
+import { stopFocus } from "@/redux/formFocusSlice";
+import { startLoading, stopLoading } from "@/redux/loadingSlice";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-
-import { ArrowDownIcon } from "@heroicons/react/24/outline";
-
-import { gsap } from "gsap";
+import Nav from "./Nav";
 
 const Hero = () => {
   const dispatch = useDispatch();
-  const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
-  const refTitle = useRef<HTMLHeadingElement>(null);
-  const refForm = useRef<HTMLDivElement>(null);
-  const refVignette = useRef<HTMLDivElement>(null);
-  const refVignette2 = useRef<HTMLDivElement>(null);
-  const refDecouverte = useRef<HTMLDivElement>(null);
+  // Références pour animations
+  const ref = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
 
+  // Sélecteurs Redux
   const { formFocus } = useSelector((state: RootState) => state.focus);
   const language = useSelector((state: any) => state.language.language);
-  const backgroundClass = formFocus ? "background blur" : "background";
 
+  // États
   const [arrowIsHover, setArrowIsHover] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [checkbox, setCheckbox] = useState<boolean>(false);
+  const [formValid, setFormValid] = useState(false);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        dispatch(stopFocus());
-      }
-    }
-
-    // Attacher l'écouteur d'événements
-    document.addEventListener("mousedown", handleClickOutside);
-
-    // Retourne une fonction de nettoyage qui sera exécutée lors du démontage du composant
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dispatch]);
-
-  const downloadPlaquette = () => {
-    // Créez un élément `<a>` et configurez-le pour le téléchargement du fichier
-    const link = document.createElement("a");
-    link.href = "/download/plaquette.pdf"; // URL du fichier à télécharger
-    link.download = "plaquette.pdf"; // Suggère un nom de fichier pour enregistrer
-    document.body.appendChild(link); // Ajoute l'élément au document
-    link.click(); // Déclenche le téléchargement
-    document.body.removeChild(link); // Nettoie en supprimant l'élément du document
+  // Fonction de validation des champs du formulaire avec Regex
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^(\+33|0)[1-9](\d{2}){4}$/; // Pour la France
+    const nameValid = name.trim().length > 0;
+    const emailValid = emailRegex.test(email);
+    const phoneValid = phoneRegex.test(phone);
+    setFormValid(nameValid && emailValid && phoneValid && checkbox);
   };
 
+  // Mettre à jour la validation chaque fois qu'un champ change
   useEffect(() => {
-    // GSAP animations
-    gsap.fromTo(
-      [
-        refTitle.current,
-        logoRef.current,
-        refForm.current,
-        refVignette2.current,
-        refVignette.current,
-        refDecouverte.current,
-      ],
-      {
-        opacity: 0,
-        y: "100%", // Départ de 30 pixels en bas
-      },
-      {
-        opacity: 1,
-        y: 0, // Arrivée à la position de départ
-        duration: 0.5, // Durée de l'animation
-        delay: 0.5, // Délai avant le début de l'animation
-        // stagger: 0.2, // Délai entre chaque animation des éléments
-        ease: "easeOut", // Type d'animation pour une sortie plus douce
+    validateForm();
+  }, [name, email, phone, checkbox]);
+
+  // Fonction d'envoi des données du formulaire
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    if (!formValid) return;
+
+    dispatch(startLoading());
+    try {
+      await addProspect({
+        nom: name,
+        email,
+        telephone: phone,
+      });
+
+      // Envoi des informations via l'API
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nom: name,
+          email,
+          telephone: phone,
+          date: new Date().toLocaleString(),
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erreur lors de l'envoi");
       }
-    );
-  }, []);
+
+      // Réinitialisation du formulaire après succès
+      dispatch(stopFocus());
+      setName("");
+      setEmail("");
+      setPhone("");
+      setCheckbox(false);
+      router.push("/merci");
+    } catch (error) {
+      console.error("Erreur lors de l'envoi :", error);
+    } finally {
+      dispatch(stopLoading());
+    }
+  };
+
+  // useEffect(() => {
+  //   // GSAP animations
+  //   gsap.fromTo(
+  //     [
+  //       refTitle.current,
+  //       logoRef.current,
+  //       refForm.current,
+  //       refVignette2.current,
+  //       refVignette.current,
+  //       refDecouverte.current,
+  //     ],
+  //     {
+  //       opacity: 0,
+  //       y: "100%", // Départ de 30 pixels en bas
+  //     },
+  //     {
+  //       opacity: 1,
+  //       y: 0, // Arrivée à la position de départ
+  //       duration: 0.5, // Durée de l'animation
+  //       delay: 0.5, // Délai avant le début de l'animation
+  //       // stagger: 0.2, // Délai entre chaque animation des éléments
+  //       ease: "easeOut", // Type d'animation pour une sortie plus douce
+  //     }
+  //   );
+  // }, []);
 
   const fr = () => {
     return (
@@ -123,62 +158,16 @@ const Hero = () => {
         `}</style>
         <section
           id="hero"
-          className="min-h-[559px] w-full flex flex-col relative"
+          className="min-h-[559px] w-full flex flex-col relative z-20"
         >
           <div className="flex">
-            <div
-              className="absolute left-[67px] top-[350px] p-3 h-[108px] w-[108px] rounded-full border-2 border-[#312F39] bg-[#312F39] justify-center items-center flex-col z-30 lg:flex hidden"
-              ref={refVignette2}
-            >
-              <p
-                className="text-white font-light text-center font-outfit text-[13px] uppercase -translate-y-2"
-                onClick={downloadPlaquette}
-              >
+            <div className="absolute left-[67px] top-[470px] p-3 h-[108px] w-[108px] rounded-full border-2 border-[#312F39] bg-[#312F39] justify-center items-center flex-col z-30 lg:flex hidden">
+              <p className="text-white font-light text-center font-outfit text-[13px] uppercase -translate-y-2">
                 LIVRAISON
               </p>
               <p className=" font-playfair text-[35px] text-white leading-3 -translate-y-2">
                 2025
               </p>
-            </div>
-            <div
-              ref={refVignette}
-              onMouseEnter={() => setArrowIsHover(true)}
-              onMouseOut={() => {
-                setArrowIsHover(false);
-              }}
-              onClick={() => dispatch(focusAction())}
-              className="cursor-pointer absolute left-[67px] top-[470px] p-3 h-[108px] w-[108px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or lg:flex hidden"
-            >
-              <p
-                onMouseEnter={() => setArrowIsHover(true)}
-                onMouseOut={() => {
-                  setArrowIsHover(false);
-                }}
-                className="text-or font-extrabold text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out "
-              >
-                Télécharger la plaquette
-              </p>
-              {arrowIsHover ? (
-                <img
-                  src="/icons/arrow-white.png"
-                  alt="arrow"
-                  onMouseEnter={() => setArrowIsHover(true)}
-                  onMouseOut={() => {
-                    setArrowIsHover(false);
-                  }}
-                  className="h-[10px] mt-2 transition duration-300 ease-in-out"
-                />
-              ) : (
-                <img
-                  src="/icons/arrow-or.png"
-                  alt="arrow"
-                  onMouseEnter={() => setArrowIsHover(true)}
-                  onMouseOut={() => {
-                    setArrowIsHover(false);
-                  }}
-                  className="h-[10px] mt-2 transition duration-300 ease-in-out"
-                />
-              )}
             </div>
             <div className="w-[121px] min-h-[559px] bg-white px-4 py-6 hidden lg:flex flex-col items-center justify-between">
               <div className="w-full">
@@ -200,7 +189,7 @@ const Hero = () => {
               </div>
               {/* <ForwardLine pourcentage={0} /> */}
             </div>
-            <div className="w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start justify-between z-10 relative md:pb-0 pb-28 md:px-4 relative">
+            <div className="w-full min-h-[559px] overflow-hidden flex flex-col md:items-end items-start  md:justify-between justify-end z-10 relative md:pb-0 pt-28 md:pt-0  md:px-4 relative">
               {/* Appliquez la classe conditionnelle directement à la div backgroundImage */}
               <div
                 className={`backgroundImage transition duration-300 ease-in-out ${
@@ -208,104 +197,90 @@ const Hero = () => {
                 }`}
               ></div>
               <Nav />
-              <div
-                className="flex flex-col md:ml-0 md:mt-0 md:mx-0 p-5 bg-[#938664] md:mr-48 md:mt-0 mt-40 md:mb-0 mb-20 md:w-max w-10/12"
-                ref={ref}
-              >
-                <h1
-                  className="sm:text-[45px] text-4xl font-bold text-white leading-[60px] font-playfair  w-max"
-                  ref={refTitle}
-                >
-                  Et du patrimoine
-                  <br /> à Poitiers, vous y
-                  <br /> avez pensé ?
-                </h1>
-                <div ref={refForm} className="">
-                  <Formulaire />
-                </div>
-              </div>
-              <div
-                className="bg-white py-3 px-6 rounded-r-full w-[450px] max-w-[80vw] md:mr-[190px] md:rounded-l-none rounded-l-full md:mx-0 mx-auto md:min-w-[500px] md:flex hidden"
-                ref={refDecouverte}
-              >
-                <div className="flex justify-between h-full flex-col sm:items-start items-center">
-                  <p className="text-[10px] font-outfit text-or text-center uppercase">
-                    Découvrez
-                  </p>
-                  <h2 className="text-or text-[20px] font-outfit text-center uppercase">
+              <div className="h-full bg-or md:mr-20 rounded-tr-[40px] flex flex-col max-w-[320px] md:max-w-[412px] justify-between pb-20">
+                <div className="w-full py-2 px-8 md:px-14 bg-white rounded-r-[40px] text-or">
+                  <h3 className="text-[10px] font-outfit">Découvrez</h3>
+                  <h4 className="text-[20px] font-outfit font-light">
                     Les appartements valony
-                  </h2>
-                  <h3 className="text-text text-[18px] font-outfit sm:w-full flex justify-between items-center text-center uppercase">
+                  </h4>
+                  <h4 className="text-[18px] text-text font-outfit font-light">
                     À POITIERS (86)
-                    {/* <ArrowDownIcon className='text-text h-[20px] translate-x-[160px] md:block hidden' /> */}
-                    <img
-                      src="/icons/arrow-black.png"
-                      alt="arrow"
-                      className="h-[20px] translate-x-[160px]"
-                    />
+                  </h4>
+                </div>
+                <div className="py-10 px-8 md:px-14 text-white font-outfit font-light">
+                  <h3 className="text-[18px]">BESOIN DE RENSEIGNEMENTS ?</h3>
+                  <h3 className="text-[18px] md:flex hidden">
+                    Laissez-nous vos coordonnées et on vous recontacte !
+                  </h3>
+                  <h3 className="text-[18px] md:hidden flex">
+                    On vous recontacte !
                   </h3>
                 </div>
+                <form
+                  onSubmit={handleSubmit}
+                  className=" flex flex-col max-w-[412px] px-8 md:px-14"
+                >
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="text-text placeholder-text font-outfit text-[14px] bg-or border-b-[1px] border-white"
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Nom"
+                    onChange={(e) => setName(e.target.value)}
+                    className="text-text placeholder-text font-outfit text-[14px] bg-or border-b-[1px] border-white mt-4"
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Téléphone"
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="text-text placeholder-text font-outfit text-[14px] bg-or border-b-[1px] border-white mt-4"
+                    required
+                  />
+                  <div className="mt-5">
+                    <input
+                      checked={checkbox}
+                      type="checkbox"
+                      onChange={(e) => setCheckbox(e.target.checked)}
+                      className="mt-3"
+                      required
+                    />
+                    <label className="ml-3 text-white text-xs">
+                      J’ai lu et accepte la politique de confidentialité de ce
+                      site.*
+                    </label>
+                  </div>
+                  <div className="w-full flex itms-center md:justify-center justify-end mt-10">
+                    <button
+                      type="submit"
+                      className="bg-or bg-white text-or font-light text-[20px] font-outfit py-2 px-6 mt-5 rounded-full flex items-center"
+                      id={"conversion"}
+                    >
+                      Envoyer
+                      <img
+                        src="/icons/arrow-or-circle.png"
+                        className="ml-2"
+                        alt="arrow with circle"
+                      />
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-          <div className="bg-gray py-5 px-5 md:mx-0 mx-auto w-full flex md:hidden relative">
-            <div className="absolute right-32 -top-[70px] p-2 h-[100px] w-[100px] rounded-full border-2 border-[#312F39] bg-[#312F39] justify-center items-center flex-col z-30 md:hidden flex">
-              <p
-                className="text-white font-light text-center font-outfit text-[13px] uppercase -translate-y-3"
-                onClick={downloadPlaquette}
-              >
+          <div className="bg-gray py-10 px-5 md:mx-0 mx-auto w-full flex md:hidden relative">
+            {/* <div className="absolute right-32 md:-top-[70px] -top-[0px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or md:border-[#312F39] bg-or md:bg-[#312F39] justify-center items-center flex-col z-30 md:hidden flex">
+              <p className="text-white font-light text-center font-outfit text-[13px] uppercase -translate-y-3">
                 LIVRAISON
               </p>
               <p className=" font-playfair text-[35px] text-white leading-3 -translate-y-3">
                 2025
               </p>
-            </div>
-            <a
-              onMouseEnter={() => setArrowIsHover(true)}
-              onMouseOut={() => {
-                setArrowIsHover(false);
-              }}
-              href="#hero"
-              onClick={() => dispatch(focusAction())}
-              className="cursor-pointer absolute right-4 -top-[70px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or bg-white justify-center items-center flex-col z-30 group hover:bg-or md:hidden flex"
-            >
-              <p className="text-or text-center font-outfit text-[10px] uppercase group-hover:text-white transition duration-300 ease-in-out ">
-                Télécharger la plaquette
-              </p>
-              {arrowIsHover ? (
-                <img
-                  src="/icons/arrow-white.png"
-                  alt="arrow"
-                  onMouseEnter={() => setArrowIsHover(true)}
-                  onMouseOut={() => {
-                    setArrowIsHover(false);
-                  }}
-                  className="h-[10px] mt-2 transition duration-300 ease-in-out"
-                />
-              ) : (
-                <img
-                  src="/icons/arrow-or.png"
-                  alt="arrow"
-                  onMouseEnter={() => setArrowIsHover(true)}
-                  onMouseOut={() => {
-                    setArrowIsHover(false);
-                  }}
-                  className="h-[10px] mt-2 transition duration-300 ease-in-out"
-                />
-              )}
-            </a>
-            <div className="flex justify-between h-full flex-col">
-              <p className="text-[10px] font-outfit text-or uppercase">
-                Découvrez
-              </p>
-              <h2 className="text-or text-[20px] font-outfit uppercase">
-                Les appartements valony
-              </h2>
-              <h3 className=" text-[18px] font-outfit sm:w-full flex justify-between items-center uppercase text-white">
-                À POITIERS (86)
-                <ArrowDownIcon className="text-text h-[20px] md:mr-10 md:block hidden" />
-              </h3>
-            </div>
+            </div> */}
           </div>
         </section>
       </>
