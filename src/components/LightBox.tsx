@@ -125,7 +125,15 @@ const LightBox = () => {
           z-index: 1;
         }
       `}</style>
-      <section className="min-h-[690px] w-full flex ">
+      <section className="min-h-[690px] w-full relative flex z-50">
+        <div className="absolute right-12 -top-[70px] p-2 h-[100px] w-[100px] rounded-full border-2 border-or md:border-[#312F39] bg-or md:bg-[#312F39] justify-center items-center flex-col z-5 md:hidden flex">
+          <p className="text-white font-light text-center font-outfit text-[13px] uppercase -translate-y-3">
+            LIVRAISON
+          </p>
+          <p className="font-playfair text-[35px] text-white leading-3 -translate-y-3">
+            2025
+          </p>
+        </div>
         <div className="w-[121px] min-h-[612px] bg-gray px-4 py-10 hidden lg:flex flex-col items-center justify-between">
           <div className="w-full">
             {/*  */}
@@ -133,7 +141,7 @@ const LightBox = () => {
           </div>
           <ForwardLine pourcentage={16} color="white" />
         </div>
-        <div className="w-full min-h-[559px] overflow-hidden flex justify-between items-center md:flex-row flex-col z-10 bg-gray">
+        <div className="w-full  z-100 min-h-[559px] overflow-hidden flex justify-between items-center md:flex-row flex-col z-10 bg-gray">
           <div className="md:h-[612px] h-full w-full relative">
             {imageContainer(listMedia[selectedMediaIndex].src)}
             <div
