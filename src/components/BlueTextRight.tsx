@@ -137,7 +137,7 @@ const BlueTextRight: React.FC<BluePresentationProps> = ({
             <h3>Frais de notaire OFFERTS**</h3>
             <p className="text-xs max-w-[60%] mt-3">
               ** Offre valable pour les 14 prochains contrats de réservation
-              signés, entre le 01/07/2024 et le 15/11/2024.
+              signés, entre le 01/07/2024 et le 30/11/2024.
             </p>
           </div>
           <div
