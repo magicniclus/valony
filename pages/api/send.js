@@ -11,19 +11,20 @@ export default async (req, res) => {
   }
 
   try {
-    const { name, email, phone, postalCode, message } = req.body;
+    const { name, email, phone } = req.body;
 
-    if (!name || !email || !phone || !postalCode || !message) {
+    // Validation des champs requis
+    if (!name || !email || !phone) {
       return res.status(400).json({ message: "Tous les champs sont requis" });
     }
 
+    // Génération du contenu de l'email
     const emailContent = ReactDOMServer.renderToString(
       <EmailTemplate
-        name={name}
+        nom={name}
         email={email}
-        phone={phone}
-        postalCode={postalCode}
-        message={message}
+        telephone={phone}
+        date={new Date().toLocaleString()}
       />
     );
 
@@ -34,6 +35,7 @@ export default async (req, res) => {
       html: emailContent,
     };
 
+    // Envoi de l'email via SendGrid
     try {
       await sgMail.send(msg);
       res.status(200).json({ message: "Email envoyé avec succès" });
@@ -43,7 +45,6 @@ export default async (req, res) => {
         message: "Erreur lors de l'envoi de l'email.",
         details: error.response?.body,
       });
-      return;
     }
   } catch (error) {
     console.error("Erreur du serveur:", error);
