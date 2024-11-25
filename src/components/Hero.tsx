@@ -51,22 +51,23 @@ const Hero = () => {
 
     dispatch(startLoading());
     try {
+      // Ajout des données dans Firebase
       await addProspect({
         nom: name,
         email,
         telephone: phone,
       });
 
-      // Envoi des informations via l'API
+      // Envoi des données à l'API
       const response = await fetch("/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          nom: name,
+          name,
           email,
-          telephone: phone,
+          phone,
           date: new Date().toLocaleString(),
         }),
       });
@@ -76,7 +77,7 @@ const Hero = () => {
         throw new Error(errorData.message || "Erreur lors de l'envoi");
       }
 
-      // Réinitialisation du formulaire après succès
+      // Réinitialisation des champs après succès
       dispatch(stopFocus());
       setName("");
       setEmail("");
@@ -89,33 +90,6 @@ const Hero = () => {
       dispatch(stopLoading());
     }
   };
-
-  // useEffect(() => {
-  //   // GSAP animations
-  //   gsap.fromTo(
-  //     [
-  //       refTitle.current,
-  //       logoRef.current,
-  //       refForm.current,
-  //       refVignette2.current,
-  //       refVignette.current,
-  //       refDecouverte.current,
-  //     ],
-  //     {
-  //       opacity: 0,
-  //       y: "100%", // Départ de 30 pixels en bas
-  //     },
-  //     {
-  //       opacity: 1,
-  //       y: 0, // Arrivée à la position de départ
-  //       duration: 0.5, // Durée de l'animation
-  //       delay: 0.5, // Délai avant le début de l'animation
-  //       // stagger: 0.2, // Délai entre chaque animation des éléments
-  //       ease: "easeOut", // Type d'animation pour une sortie plus douce
-  //     }
-  //   );
-  // }, []);
-
   const fr = () => {
     return (
       <>
